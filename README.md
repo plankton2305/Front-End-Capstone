@@ -49,3 +49,6 @@ From Git create a pull request to merge the branches
 * -- go to Git --
 * create new pull request master << newcomponent
 * resolve merge conflicts
+
+
+shhhh....its Tosin
