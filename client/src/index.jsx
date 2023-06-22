@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 const App = () => {
   return (
     <>
-      Hello World
+      Hello World!
     </>
   )
 }
