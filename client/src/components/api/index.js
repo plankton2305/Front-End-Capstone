@@ -1,9 +1,9 @@
-import 
+import
 
 class Api {
 
   constructor() {
-    this.base =
+    this.base = '';
   }
 
 
