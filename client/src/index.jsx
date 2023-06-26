@@ -1,14 +1,17 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import { createRoot } from 'react-dom/client';
-
+import RelatedApp from './components/related-products/RelatedApp.jsx';
 
 const App = () => {
+  const [products, setProducts] = useState([]);
   return (
-    <>
-      Hello World!
-    </>
+    <div>
+      <p>HELLO WORLD!</p>
+      <section>
+        <RelatedApp />
+      </section>
+    </div>
   )
 }
 
-const root = createRoot(document.getElementById('app'));
-root.render(<App />);
+createRoot(document.getElementById('app')).render(<App />);
