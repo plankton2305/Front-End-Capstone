@@ -6,7 +6,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   return (
     <div>
-      <p>HELLO, NOT</p>
+      <p>HELLO WORLD!</p>
       <section>
         <RelatedApp />
       </section>

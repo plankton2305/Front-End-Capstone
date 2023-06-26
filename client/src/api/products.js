@@ -10,6 +10,10 @@ class Products {
     return this.api.get('/products');
   }
 
+  getProduct(id) {
+    return this.api.get(`/products/${id}`);
+  }
+
   getStyles(id) {
     return this.api.get(`/products/${id}/styles`);
   }
