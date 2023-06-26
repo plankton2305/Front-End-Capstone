@@ -38,12 +38,22 @@ git push -u origin new-feature
 . Create a pull request to merge feature branch to main
 From Git create a pull request to merge the branches
 
+### Pull from main into your branch!
+Make sure you are on your branch
+```
+git pull origin main
+```
+
 ### Remove files from the commit!
 You can remove index.jsx or other files that affect other people's work.
+```
 git restore --staged filePathforwhateverfilelikeindex.jsx
+```
 
 ### If your branch is created already
+```
 git push origin YOURFEATURE
+```
 
 ### Example Workflow
 * git clone git@github.com:plankton2305/Front-End-Capstone.git
