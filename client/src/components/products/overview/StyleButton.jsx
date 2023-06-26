@@ -1,10 +1,11 @@
 import {useState, useEffect} from "react";
 
-const StyleButton = ({style, setCurrStyleId}) => {
+const StyleButton = ({style, setCurrStyleIndex, buttIndex}) => {
 
+  console.log('STYLE BUTTON')
   const handleClick = () => {
-    console.log('button click')
-    setCurrStyleId(style.style_id - 1);
+    console.log('button click: ', buttIndex)
+    setCurrStyleIndex(buttIndex);
   }
 
   //replace button with image
