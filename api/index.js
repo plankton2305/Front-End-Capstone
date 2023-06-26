@@ -1,4 +1,5 @@
 import axios from 'axios';
+import TOKEN from '../config.js'
 
 class Api {
 
