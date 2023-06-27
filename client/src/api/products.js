@@ -8,9 +8,10 @@ class Products {
 
   getProducts() {
     return this.api.get('');
+    return this.api.get('');
   }
 
-  getProduct(id) {
+  getProductById(id) {
     return this.api.get(`/${id}`);
   }
 

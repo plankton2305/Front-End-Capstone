@@ -1,34 +1,56 @@
-const React = require('react');
+const {useEffect, useState} = require('react');
+const Products = require('../../api/products.js');
 
-const RelatedCards = () => {
+
+const RelatedCards = ({productStyles}) => {
+  console.log('GIVE ME STYLES', productStyles);
+
+  const style1 = "text-3xl font-bold underline";
 
   // Rough draft for html structure
   return (
-    <div class='related-card'>
-      <a href='PLACE PRODUCT LINK HERE'>
-        <div class='product-image'>
-          <img src='PREVIEW IMAGE SRC HERE' alt='Product Preview'></img>
-          <div class='thumbnail-carousel'>
-            <img src='THUMBNAIL1 SRC HERE' alt='Thumbnail 1'></img>
-            <img src='THUMBNAIL2 SRC HERE' alt='Thumbnail 2'></img>
-            <img src='THUMBNAIL3 SRC HERE' alt='Thumbnail 3'></img>
-            <img src='THUMBNAIL4 SRC HERE' alt='Thumbnail 4'></img>
-          </div>
+    <ul>
+      <h1 className={style1}>
+        Hello world!
+      </h1>
+      {productStyles.map((product, index) => (
+        <aside key={index}>
+        <div className='related-card'>
+          {/* <a href='PLACE PRODUCT LINK HERE'> */}
+            <div className='product-image'>
+              {product.styles && product.styles.photos && product.styles.photos[0].url ? (
+              <img
+              src={product.styles.photos[0].url}
+              alt='Product Preview'
+              style={{width: '120px', height: 'auto'}}
+              />
+              ) : (
+                <span>NO IMAGE AVAILABLE</span>
+              )}
+            </div>
+            <div className='product-info'>
+              <div className='category'>{product.category}</div>
+              <div className='name'>{product.product.name}</div>
+              <div className='price'>
+                {product.styles && product.styles.sale_price ? (
+                  <span className='sale-price'>
+                    <s>${product.product.default_price} </s>
+                     ${product.styles.sale_price}
+                    </span>
+                ) : (
+                  <span className='original-price'>${product.product.default_price}</span>
+                )}
+              </div>
+              <div className='rating'>
+                <span className='STARS GO HERE'>☆☆☆☆☆</span>
+              </div>
+            </div>
+          {/* </a> */}
+          <button className='action-button'></button>
         </div>
-        <div class='product-info'>
-          <div class='category'>Product Category</div>
-          <div class='name'>Product Name</div>
-          <div class='price'>
-            <span class='sale-price'>Sale Price</span>
-            <span class='original-price'>Original Price</span>
-          </div>
-          <div class='rating'>
-            <span class='STARS GO HERE'></span>
-          </div>
-        </div>
-      </a>
-      <button class='action-button'></button>
-    </div>
+      </aside>
+      ))}
+    </ul>
   );
 };
 
