@@ -7,19 +7,19 @@ class Products {
   }
 
   getProducts() {
-    return this.api.get('/products');
+    return this.api.get('');
   }
 
-  getProduct(id) {
-    return this.api.get(`/products/${id}`);
+  getProductById(id) {
+    return this.api.get(`/${id}`);
   }
 
   getStyles(id) {
-    return this.api.get(`/products/${id}/styles`);
+    return this.api.get(`/${id}/styles`);
   }
 
   getRelated(id) {
-    return this.api.get(`/products/${id}/related`);
+    return this.api.get(`/${id}/related`);
   }
 };
 

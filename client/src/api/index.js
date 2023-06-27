@@ -1,5 +1,5 @@
 import axios from 'axios';
-const TOKEN = require('../../../config').TOKEN;
+const TOKEN = require('../../../config1').TOKEN;
 
 class Api {
 
