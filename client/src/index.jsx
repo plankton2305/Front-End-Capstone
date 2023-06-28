@@ -1,14 +1,26 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import { createRoot } from 'react-dom/client';
+import RelatedList from './components/related-products/RelatedList.jsx';
+import Products from './api/products.js';
+import './index.css';
+import 'tailwindcss/tailwind.css';
+
 
 
 const App = () => {
+   //array of related products
+  const [productId, setProductId] = useState(37311); //starts at 37313
+
+
   return (
-    <>
-      Hello World!
-    </>
+    <div>
+      <p>WELCOME TO THE FREAKIN' CHUM CLOSET, YA LOSERS!</p>
+      <section>
+        <RelatedList productId={productId} setProductId={setProductId} />
+      </section>
+    </div>
   )
 }
 
-const root = createRoot(document.getElementById('app'));
-root.render(<App />);
+createRoot(document.getElementById('app')).render(<App />);
+export default App;
