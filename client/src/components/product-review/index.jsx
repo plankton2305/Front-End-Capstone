@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import Ratings from './Ratings.jsx';
-import Reviews from './Reviews.jsx';
+import ReviewsList from './Reviews-List.jsx';
 
-const Review = () => {
-
+const Review = ({ productId }) => {
 
   return (
     // Someting For Ratings
     // Something For Reviews
     <section>
-      <Ratings />
-      <Reviews />
+      <Ratings productId={productId} />
+      <ReviewsList productId={productId} />
     </section>
   );
 }

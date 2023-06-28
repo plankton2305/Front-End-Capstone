@@ -7,6 +7,7 @@ const Ratings = ({ productId }) => {
   //const [starVal, setStarVal] = useState(3.5);
   const [reviewMeta, setReviewMeta] = useState({});
 
+
   // const calculateAverage = (ratings) => {
   //   let sum = 0;
   //   let numOfRatings = 0;
