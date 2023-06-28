@@ -1,5 +1,5 @@
 import axios from 'axios';
-const TOKEN = require('../../../config1').TOKEN;
+const TOKEN = require('../../../config').TOKEN;
 
 class Api {
 
@@ -15,7 +15,7 @@ class Api {
   }
 
   post(path, data) {
-    return axios.post(`${this.base}${path}`, data, { headers: this.headers});
+    return axios.post(`${this.base}${path}`, data, { headers: this.headers });
   }
 }
 

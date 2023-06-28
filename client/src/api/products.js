@@ -8,6 +8,7 @@ class Products {
 
   getProducts() {
     return this.api.get('');
+    return this.api.get('');
   }
 
   getProductById(id) {
@@ -21,6 +22,6 @@ class Products {
   getRelated(id) {
     return this.api.get(`/${id}/related`);
   }
-};
+}
 
 export default new Products();
