@@ -1,10 +1,8 @@
 // react imports
 import {React, useState, useEffect} from 'react';
 import { createRoot } from 'react-dom/client';
-import RelatedList from './components/related-products/RelatedList.jsx';
-import Review from './components/product-review/index.jsx';
 
-import Products from './api/products.js';
+//Styling Imports
 import './index.css';
 import 'tailwindcss/tailwind.css';
 import { ThemeProvider } from "@material-tailwind/react";
@@ -13,6 +11,7 @@ import { ThemeProvider } from "@material-tailwind/react";
 import Products from './api/products.js';
 
 // component imports
+import Review from './components/product-review/index.jsx';
 import Overview from './components/products/overview/Overview.jsx';
 import RelatedList from './components/related-products/RelatedList.jsx';
 
@@ -34,7 +33,9 @@ const App = () => {
       return (<div><Overview
         id = {currId}
         setCurrId = {setCurrId} />
-        <RelatedList productId={currId} setProductId={setCurrId} /></div>
+        <RelatedList productId={currId} setProductId={setCurrId} />
+        <Review productId={currId} />
+        </div>
         )
     } else {
       return (<div></div>)
