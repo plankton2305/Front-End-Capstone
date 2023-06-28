@@ -29,10 +29,11 @@ const App = () => {
 
   const condRender = () => {
     if (currId) {
-      return (<Overview
+      return (<div><Overview
         id = {currId}
-        setCurrId = {setCurrId}/>
-        <RelatedList productId={currId} setProductId={setCurrId} />)
+        setCurrId = {setCurrId} />
+        <RelatedList productId={currId} setProductId={setCurrId} /></div>
+        )
     } else {
       return (<div></div>)
     }
@@ -41,6 +42,7 @@ const App = () => {
   return (
     <div>
       {condRender()}
+
     </div>
   )
 }
