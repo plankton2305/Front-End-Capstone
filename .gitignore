@@ -1,4 +1,4 @@
-*node_modules*
-config1.js
+node_modules
+
+bundle.js*
 config.js
-client/dist/bundle.js

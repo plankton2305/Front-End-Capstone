@@ -21,6 +21,6 @@ class Products {
   getRelated(id) {
     return this.api.get(`/${id}/related`);
   }
-};
+}
 
 export default new Products();
