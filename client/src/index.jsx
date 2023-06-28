@@ -1,8 +1,9 @@
 // react imports
 import {React, useState, useEffect} from 'react';
 import { createRoot } from 'react-dom/client';
-
-// tailwind imports
+import RelatedList from './components/related-products/RelatedList.jsx';
+import Ratings from './components/product-review/Ratings.jsx';
+import Products from './api/products.js';
 import './index.css';
 import 'tailwindcss/tailwind.css';
 import { ThemeProvider } from "@material-tailwind/react";
