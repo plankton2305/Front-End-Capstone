@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import RelatedCards from './RelatedCards.jsx';
 import Products from '../../api/products.js';
+import { Carousel } from "@material-tailwind/react";
 
 // Rough draft for html structure
 const RelatedList = ({productId, setProductId}) => {
   const [productStyles, setProductStyles] = useState([]);
+  const carouselRef = useRef(null);
   // let [relatedProducts, setRelatedProducts] = useState([]);
 
   const collectRelatedInfo = async () => { // make asynchronous
@@ -41,49 +43,30 @@ const RelatedList = ({productId, setProductId}) => {
 
   console.log('PRODUCTS INFO IS ', productStyles);
 
-  //VICTOR COMMENTS OUT
-  /*
-  let [products, setProducts] = useState([]);
-  const [productId, setProductId] = useState(37313); //starts at 37313
-  const [currProd, setCurrProd] = useState([]);
-  const [productStyles, setProductStyles] = useState([]);
+  const scrollLeft = () => {
+    carouselRef.current.scroll({
+      left: carouselRef.current.scrollLeft - carouselRef.current.offsetWidth,
+      behavior: "smooth",
+    });
+  };
 
-  useEffect(()=>{
-    //STEP 1 GET PRODUCT
-    Products.getProductById(productId)
-      .then((res)=>{
-        console.log('getProduct SUCCESS');
-        console.log(res.data);
-        setCurrProd(res.data);
-      })
-      .catch((err)=>{console.log('getProduct ERROR: ', err)})
-    //STEP 2 GET STYLES
-    Products.getStyles(productId)
-      .then((res)=>{
-        console.log('getStyles SUCCESS');
-        console.log(res.data);
-        setProductStyles(res.data.results);
-      })
-      .catch((err)=>{console.log('getStyles ERROR: ', err)})
-    //STEP 3 GET RELATED
-    Products.getRelated(productId)
-        .then(response => {
-          console.log('getRelated SUCCESS', response.data);
-          setProducts(response.data);
-        })
-        .catch(err => {
-          console.log('ERROR', err);
-        })
-  }, [productId]);
-  */
-  //VICTOR COMMENTED ABOVE OUT
+  const scrollRight = () => {
+    carouselRef.current.scroll({
+      left: carouselRef.current.scrollLeft + carouselRef.current.offsetWidth,
+      behavior: "smooth",
+    });
+  };
 
   return (
-    <div className='related-list'>
-      <div className='related-products-container'   id='related-products-container'>
-        <RelatedCards productStyles={productStyles}/>
+    <React.Fragment>
+      <a className="btn btn-circle" onClick={scrollLeft}>❮</a>
+      <div ref={carouselRef} className="carousel w-9/12 overflow-hidden rounded-box">
+        {productStyles.map((product, index) => (
+          <RelatedCards key={index} product={product} />
+        ))}
       </div>
-    </div>
+      <a className="btn btn-circle" onClick={scrollRight}>❯</a>
+    </React.Fragment>
   );
 };
 

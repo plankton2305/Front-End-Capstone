@@ -4,12 +4,15 @@ import RelatedList from './components/related-products/RelatedList.jsx';
 import Products from './api/products.js';
 import './index.css';
 import 'tailwindcss/tailwind.css';
+import { ThemeProvider } from "@material-tailwind/react";
+
+
 
 
 
 const App = () => {
    //array of related products
-  const [productId, setProductId] = useState(37311); //starts at 37313
+  const [productId, setProductId] = useState(37325); //starts at 37313
 
 
   return (
@@ -22,5 +25,10 @@ const App = () => {
   )
 }
 
-createRoot(document.getElementById('app')).render(<App />);
+createRoot(document.getElementById('app')).render(
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
+);
+
 export default App;
