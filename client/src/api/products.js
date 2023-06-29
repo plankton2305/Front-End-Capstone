@@ -8,6 +8,7 @@ class Products {
 
   getProducts() {
     return this.api.get('');
+    return this.api.get('');
   }
 
   getProductById(id) {
