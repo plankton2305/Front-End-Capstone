@@ -15,7 +15,7 @@ class Api {
   }
 
   post(path, data) {
-    return axios.post(`${this.base}${path}`, data, { headers: this.headers});
+    return axios.post(`${this.base}${path}`, data, { headers: this.headers });
   }
 }
 

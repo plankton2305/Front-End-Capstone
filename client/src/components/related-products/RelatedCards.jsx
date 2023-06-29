@@ -1,56 +1,109 @@
 const {useEffect, useState} = require('react');
+import React from 'react';
 const Products = require('../../api/products.js');
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  Typography,
+} from "@material-tailwind/react";
+import Compare from './Compare.jsx';
 
 
-const RelatedCards = ({productStyles}) => {
-  console.log('GIVE ME STYLES', productStyles);
+{/* <Checkbox className='absolute top-0 right-0 m-2'></Checkbox> */}
+{/* <button class='absolute top-0 right-0 m-2'>
+<span class="mask mask-star-2 bg-orange-400"></span>
+</button> */}
+{/* <button class='absolute top-0 right-0 m-2'>button</button> */}
 
-  const style1 = "text-3xl font-bold underline";
+const RelatedCards = ({product}) => {
+  const unfill = 'mask mask-star-2 bg-orange-400 opacity-50';
+  const fill = 'mask mask-star-2 bg-orange-400';
 
-  // Rough draft for html structure
+  const [star, setStar] = useState(unfill);
+  const [show, setShow] = useState(null);
+
+  const changeStyle = () => {
+    if (star === unfill) {
+      setStar(fill);
+      showCompare();
+    } else {
+      setStar(unfill);
+    }
+  };
+
+  const showCompare = () => {
+    if (!show) {
+      setShow('open');
+    } else {
+      setShow(null);
+    }
+  }
+
   return (
-    <ul>
-      <h1 className={style1}>
-        Hello world!
-      </h1>
-      {productStyles.map((product, index) => (
-        <aside key={index}>
-        <div className='related-card'>
-          {/* <a href='PLACE PRODUCT LINK HERE'> */}
-            <div className='product-image'>
-              {product.styles && product.styles.photos && product.styles.photos[0].url ? (
+    <React.Fragment>
+      <div className="carousel-item">
+      <Card className="mt-6 w-96">
+        <CardHeader color="blue-gray" className="relative h-56">
+          {product.styles && product.styles.photos && product.styles.photos[0].url ? (
+            <div className='relative'>
               <img
-              src={product.styles.photos[0].url}
-              alt='Product Preview'
-              style={{width: '120px', height: 'auto'}}
+                className='w-full'
+                src={product.styles.photos[0].url}
+                alt={"Product Preview"}
+                layout={"fill"}
+                className={"h-full w-full object-cover"}
               />
+              <div className='rating absolute top-0 right-0 m-2'>
+                <input name="rating-2" className={star} onClick={changeStyle}/>
+                <dialog id="my_modal_2" className="modal" open={show}>
+                  <form method="dialog" className="modal-box">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">Press ESC key or click outside to close</p>
+                  </form>
+                  <form method="dialog" className="modal-backdrop">
+                    <button onClick={showCompare}></button>
+                  </form>
+                </dialog>
+              </div>
+            </div>
+            ) : (
+            <div className='realtive'>
+              <img
+                className='w-full'
+                src='../../_docs/default_pic.png'
+                alt={"Product Preview"}
+                layout={"fill"}
+                className={"h-full w-full object-cover"}
+              />
+              <div className='rating absolute top-0 right-0 m-2'>
+                <input name="rating-2" className={star} onClick={changeStyle}/>
+              </div>
+            </div>
+          )}
+        </CardHeader>
+        <CardBody>
+          <Typography variant="h5" color="blue-gray" className="mb-2">
+            {product.product.name}
+          </Typography>
+          <Typography>
+          {product.product.category}
+
+          </Typography>
+          <Typography>
+            {product.styles && product.styles.sale_price ? (
+              <span className='sale-price'>
+                <s>${product.product.default_price} </s>
+                ${product.styles.sale_price}
+              </span>
               ) : (
-                <span>NO IMAGE AVAILABLE</span>
+                <span className='original-price'>${product.product.default_price}</span>
               )}
-            </div>
-            <div className='product-info'>
-              <div className='category'>{product.category}</div>
-              <div className='name'>{product.product.name}</div>
-              <div className='price'>
-                {product.styles && product.styles.sale_price ? (
-                  <span className='sale-price'>
-                    <s>${product.product.default_price} </s>
-                     ${product.styles.sale_price}
-                    </span>
-                ) : (
-                  <span className='original-price'>${product.product.default_price}</span>
-                )}
-              </div>
-              <div className='rating'>
-                <span className='STARS GO HERE'>☆☆☆☆☆</span>
-              </div>
-            </div>
-          {/* </a> */}
-          <button className='action-button'></button>
-        </div>
-      </aside>
-      ))}
-    </ul>
+            </Typography>
+        </CardBody>
+      </Card>
+      </div>
+    </React.Fragment>
   );
 };
 

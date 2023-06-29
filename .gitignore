@@ -1,4 +1,7 @@
-*node_modules*
-config1.js
+.DS_Store
+node_modules
+
+bundle.js*
 config.js
-client/dist/bundle.js
+config1.js
+# need to remove bundle.js

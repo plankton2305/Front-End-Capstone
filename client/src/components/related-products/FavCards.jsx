@@ -14,4 +14,4 @@ const FavCards = () => {
   );
 };
 
-export default FavCards;
+export default FavCard;
