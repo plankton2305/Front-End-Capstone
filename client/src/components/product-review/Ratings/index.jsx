@@ -1,6 +1,6 @@
 import StarRating from './Star-Rating.jsx';
 import { useState, useEffect } from 'react';
-import Reviews from '../../api/reviews.js';
+import Reviews from '../../../api/reviews.js';
 import RatingBreakdown from './Rating-Breakdown.jsx';
 import FitBreakdown from './Fit-Breakdown.jsx';
 //const Reviews = require('../../api/reviews.js');

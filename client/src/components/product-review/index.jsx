@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Ratings from './Ratings.jsx';
-import ReviewsList from './Reviews-List.jsx';
+import Ratings from './Ratings/index.jsx';
+import ReviewsList from './Reviews/index.jsx';
 
 const Review = ({ productId }) => {
 
