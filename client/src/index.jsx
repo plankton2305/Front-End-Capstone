@@ -12,7 +12,7 @@ import { ThemeProvider } from "@material-tailwind/react";
 
 const App = () => {
    //array of related products
-  const [productId, setProductId] = useState(37325); //starts at 37313
+  const [productId, setProductId] = useState(37316); //starts at 37313
 
 
   return (
