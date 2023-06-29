@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import RelatedCards from './RelatedCards.jsx';
 import Products from '../../api/products.js';
 import { Carousel } from "@material-tailwind/react";
+import _ from 'underscore';
 
 // Rough draft for html structure
 const RelatedList = ({productId, setProductId}) => {
@@ -17,6 +18,7 @@ const RelatedList = ({productId, setProductId}) => {
       // create an array of promises by mapping all the related id's
       const promises = relatedIds.map(async (id) => {
         const productResponse = await Products.getProductById(id);
+
         const stylesResponse = await Products.getStyles(id);
 
         let defaultStyle = stylesResponse.data.results.find(style => style['default?'] === true); // only take default style
@@ -25,17 +27,19 @@ const RelatedList = ({productId, setProductId}) => {
           product: productResponse.data,
           styles: defaultStyle
         };
+
         return relatedData;
       });
 
       const collection = await Promise.all(promises); // waits for all promises to finish and collects into results array
 
-      setProductStyles(collection);
+      const uniqCollection = _.uniq(collection, (product) => product.product.id); // remove duplicates
+
+      setProductStyles(uniqCollection);
     } catch (error) {
       console.log('ERROR:', error);
     }
   };
-
 
   useEffect(() => {
     collectRelatedInfo();

@@ -7,41 +7,78 @@ import {
   CardBody,
   Typography,
 } from "@material-tailwind/react";
+import Compare from './Compare.jsx';
 
 
 {/* <Checkbox className='absolute top-0 right-0 m-2'></Checkbox> */}
 {/* <button class='absolute top-0 right-0 m-2'>
 <span class="mask mask-star-2 bg-orange-400"></span>
 </button> */}
+{/* <button class='absolute top-0 right-0 m-2'>button</button> */}
 
 const RelatedCards = ({product}) => {
+  const unfill = 'mask mask-star-2 bg-orange-400 opacity-50';
+  const fill = 'mask mask-star-2 bg-orange-400';
+
+  const [star, setStar] = useState(unfill);
+  const [show, setShow] = useState(null);
+
+  const changeStyle = () => {
+    if (star === unfill) {
+      setStar(fill);
+      showCompare();
+    } else {
+      setStar(unfill);
+    }
+  };
+
+  const showCompare = () => {
+    if (!show) {
+      setShow('open');
+    } else {
+      setShow(null);
+    }
+  }
 
   return (
     <React.Fragment>
-      <div class="carousel-item">
+      <div className="carousel-item">
       <Card className="mt-6 w-96">
         <CardHeader color="blue-gray" className="relative h-56">
           {product.styles && product.styles.photos && product.styles.photos[0].url ? (
-            <div class='relative'>
+            <div className='relative'>
               <img
-                class='w-full'
+                className='w-full'
                 src={product.styles.photos[0].url}
                 alt={"Product Preview"}
                 layout={"fill"}
                 className={"h-full w-full object-cover"}
               />
-              <button class='absolute top-0 right-0 m-2'>button</button>
+              <div className='rating absolute top-0 right-0 m-2'>
+                <input name="rating-2" className={star} onClick={changeStyle}/>
+                <dialog id="my_modal_2" className="modal" open={show}>
+                  <form method="dialog" className="modal-box">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">Press ESC key or click outside to close</p>
+                  </form>
+                  <form method="dialog" className="modal-backdrop">
+                    <button onClick={showCompare}></button>
+                  </form>
+                </dialog>
+              </div>
             </div>
             ) : (
-            <div class='realtive'>
+            <div className='realtive'>
               <img
-                class='w-full'
-                src='https://lh6.googleusercontent.com/K_LvL2XGZdOhq7m-xM6eywUFwM0mLNeE22p05p6T45ejcKLjrJaDHZrxlF5eQ9FtVux4cWNdiIQVJ__6rhhpEqrpLEBjA8o2Fut39URQb1ZxwX687vDzp2xl6VD0E0ghIw=w1280'
+                className='w-full'
+                src='../../_docs/default_pic.png'
                 alt={"Product Preview"}
                 layout={"fill"}
                 className={"h-full w-full object-cover"}
               />
-              <button class='absolute top-0 right-0 m-2'>button</button>
+              <div className='rating absolute top-0 right-0 m-2'>
+                <input name="rating-2" className={star} onClick={changeStyle}/>
+              </div>
             </div>
           )}
         </CardHeader>
