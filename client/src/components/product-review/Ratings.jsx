@@ -1,6 +1,8 @@
 import StarRating from './Star-Rating.jsx';
 import { useState, useEffect } from 'react';
 import Reviews from '../../api/reviews.js';
+import RatingBreakdown from './Rating-Breakdown.jsx';
+import FitBreakdown from './Fit-Breakdown.jsx';
 //const Reviews = require('../../api/reviews.js');
 
 const Ratings = ({ productId }) => {
@@ -45,9 +47,11 @@ const Ratings = ({ productId }) => {
       <div>
         {/* Bar Graph Representation of Ratings Goes Here */}
         <p>Bar Graph Goes Here</p>
+        <RatingBreakdown reviewMeta={reviewMeta} />
       </div>
       <div>
         <p>Fit Ratings Go Here</p>
+        <FitBreakdown reviewMeta={reviewMeta} />
         {/* Fit Ratings */}
       </div>
     </div>
