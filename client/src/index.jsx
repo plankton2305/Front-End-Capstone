@@ -14,6 +14,7 @@ import Products from './api/products.js';
 import Review from './components/product-review/index.jsx';
 import Overview from './components/products/overview/Overview.jsx';
 import RelatedList from './components/related-products/RelatedList.jsx';
+import QuestionsAndAnswers from './components/qa/index.jsx';
 
 const App = () => {
   const [currId, setCurrId] = useState();
@@ -30,10 +31,10 @@ const App = () => {
 
   const condRender = () => {
     if (currId) {
-      return (<div><Overview
-        id = {currId}
-        setCurrId = {setCurrId} />
+      return (<div>
+        <Overview id = {currId} setCurrId = {setCurrId} />
         <RelatedList productId={currId} setProductId={setCurrId} />
+        <QuestionsAndAnswers productId={currId} />
         <Review productId={currId} />
         </div>
         )
