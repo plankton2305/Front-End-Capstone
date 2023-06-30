@@ -18,7 +18,7 @@ const AnswerList = ({ answers }) => {
 }
 
 const Question = ({ question, filter }) => {
-  console.log(question);
+  // console.log(question);
   return (
     <>
     <strong>Q: <span>{ question.question_body }</span></strong>
@@ -30,7 +30,7 @@ const Question = ({ question, filter }) => {
 }
 
 const QuestionList = ({ filter, questions }) => {
-  console.log(questions);
+  // console.log(questions);
 
   return (
     <>

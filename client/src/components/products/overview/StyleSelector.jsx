@@ -2,9 +2,9 @@ import {useState, useEffect} from "react";
 import StyleButton from './StyleButton.jsx';
 
 const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
-  console.log('STYLE SELECTOR')
-  console.log(currStyle);
-  console.log(styleArray);
+  // console.log('STYLE SELECTOR')
+  // console.log(currStyle);
+  // console.log(styleArray);
   let buttIndex = -1;
 
   const renderSelectors = () => {
@@ -21,7 +21,7 @@ const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
       trArr.push(cell);
 
       if (i%4 === 3 || i === styleArray.length - 1) {
-        console.log("TR ARR LENGTH: *****", trArr.length)
+        // console.log("TR ARR LENGTH: *****", trArr.length)
         tableArr.push(<tr>{trArr}</tr>)
         trArr = [];
       }

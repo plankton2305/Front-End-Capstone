@@ -13,15 +13,15 @@ const App = () => {
   useEffect(()=>{
     Products.getProductById(currId)
       .then((res)=>{
-        console.log('getProduct SUCCESS')
-        console.log(res.data)
+        // console.log('getProduct SUCCESS')
+        // console.log(res.data)
         setCurrProd(res.data);
       })
       .catch((err)=>{console.log('getProduct ERROR: ', err)})
     Products.getStyles(currId)
       .then((res)=>{
-        console.log('getStyles SUCCESS')
-        console.log(res.data.results)
+        // console.log('getStyles SUCCESS')
+        // console.log(res.data.results)
         setProductStyles(productStylesSetup(res.data.results));
       })
       .catch((err)=>{console.log('getStyles ERROR: ',err)})
@@ -40,7 +40,7 @@ const App = () => {
       }
     }
     if (defIndex < 0) {
-      console.log('------------ALL -------------- FALSE ------------')
+      // console.log('------------ALL -------------- FALSE ------------')
       return arr;
     } else {
       for (let i = 0; i < arr.length; i++){

@@ -18,7 +18,7 @@ const QuestionsAndAnswers = ({ productId }) => {
       const api = Questions;
       api.getQuestions(productId)
         .then((response) => {
-          console.log('getQuestions', response);
+          // console.log('getQuestions', response);
           setQuestions(response.data.results);
         })
         .catch((err) => console.log('errr', err));
@@ -26,7 +26,7 @@ const QuestionsAndAnswers = ({ productId }) => {
   }, []);
 
   useEffect(() => {
-    console.log('filter: ', filter);
+    // console.log('filter: ', filter);
   }, [filter]);
 
 

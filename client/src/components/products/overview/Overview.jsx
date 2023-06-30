@@ -3,35 +3,35 @@ import StyleSelector from './StyleSelector.jsx';
 import Products from '../../../api/products.js';
 
 const Overview = ({id, setCurrId}) => {
-  console.log('OVERVIEW')
+  // console.log('OVERVIEW')
   const [currStyleIndex, setCurrStyleIndex]= useState(0)
   const [currProd, setCurrProd] = useState();
   const [productStyles, setProductStyles] = useState([]);
 
   //useEffects
   useEffect(()=>{
-    console.log('currSTYLE Index IS: ', currStyleIndex);
+    // console.log('currSTYLE Index IS: ', currStyleIndex);
   }
   ,[currStyleIndex])
 
   useEffect(()=>{
     Products.getProductById(id)
       .then((res)=>{
-        console.log('getProduct SUCCESS')
-        console.log(res.data)
+        // console.log('getProduct SUCCESS')
+        // console.log(res.data)
         setCurrProd(res.data);
       })
       .catch((err)=>{console.log('getProduct ERROR: ', err)})
     Products.getStyles(id)
       .then((res)=>{
-        console.log('getStyles SUCCESS')
-        console.log(res.data.results)
+        // console.log('getStyles SUCCESS')
+        // console.log(res.data.results)
         setProductStyles(productStylesSetup(res.data.results));
       })
       .catch((err)=>{console.log('getStyles ERROR: ',err)})
   },[id])
 
-  console.log("ProductStyles is :", productStyles)
+  // console.log("ProductStyles is :", productStyles)
 
   let currStyle = productStyles[currStyleIndex];
 
@@ -50,7 +50,7 @@ const Overview = ({id, setCurrId}) => {
       }
     }
     if (defIndex < 0) {
-      console.log('------------ALL -------------- FALSE ------------')
+      // console.log('------------ALL -------------- FALSE ------------')
       return arr;
     } else {
       for (let i = 0; i < arr.length; i++){

@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 
 const StyleButton = ({style, setCurrStyleIndex, buttIndex, currStyleId}) => {
 
-  console.log('STYLE BUTTON')
+  // console.log('STYLE BUTTON')
   const handleClick = (e) => {
     // e.target.className = style2
     console.log('button click: ', buttIndex)
