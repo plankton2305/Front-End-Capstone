@@ -31,9 +31,8 @@ const StarRating = ({ reviewMeta }) => {
     return numOfRatings ? ( sum / numOfRatings ) : 0;
   }
 
-  const averageRating = Math.round(calculateAverage(reviewMeta.ratings) * 10) / 10;
 
-  const renderStars = () => {
+  const renderStars = (averageRating) => {
     //const averageRating = Math.round(calculateAverage(reviewMeta.ratings) * 10) / 10;
 
     const fullStars = Math.floor(averageRating);
@@ -57,6 +56,8 @@ const StarRating = ({ reviewMeta }) => {
   }
 
 
+  const averageRating = Math.round(calculateAverage(reviewMeta.ratings) * 10) / 10;
+
   return (
     <div className="Star-Rating">
       <p>
@@ -66,7 +67,7 @@ const StarRating = ({ reviewMeta }) => {
       </p>
       <div>
         {/* Render Stars Here (Checked or Unchecked based on API Call)*/}
-        {renderStars()}
+        {renderStars(averageRating)}
       </div>
     </div>
   )

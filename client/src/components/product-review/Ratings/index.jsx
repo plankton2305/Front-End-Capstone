@@ -1,8 +1,8 @@
 import StarRating from './Star-Rating.jsx';
 import { useState, useEffect } from 'react';
 import Reviews from '../../../api/reviews.js';
-import RatingBreakdown from './Rating-Breakdown.jsx';
-import FitBreakdown from './Fit-Breakdown.jsx';
+import RatingBreakdown from './Rating-Breakdown/index.jsx';
+import FitBreakdown from './Fit-Breakdown/index.jsx';
 //const Reviews = require('../../api/reviews.js');
 
 const Ratings = ({ productId }) => {
