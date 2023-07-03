@@ -16,15 +16,17 @@ import RelatedList from './components/related-products/RelatedList.jsx';
 import QuestionsAndAnswers from './components/qa/index.jsx';
 
 const App = () => {
-
    const [currId, setCurrId] = useState();
+   const [productSeller, setProductSeller] = useState('');
+   const [product, setProduct] = useState({});
 
    useEffect(()=>{
      Products.getProducts()
        .then((res)=>{
-         console.log('Get PRODUCTS')
-         console.log(res.data)
+        //  console.log('Get PRODUCTS', res.data)
          setCurrId(res.data[0]?.id || '')
+         setProductSeller(res.data[0]?.name || '')
+         setProduct(res.data[0])
        })
        .catch((err)=>{console.log('GET PRODUCTS ERROR: ', err)})
    },[])
@@ -32,10 +34,10 @@ const App = () => {
   const condRender = () => {
     if (currId) {
       return (<div>
-        <Overview id = {currId} setCurrId = {setCurrId} />
-        <RelatedList productId={currId} setProductId={setCurrId} />
-        <QuestionsAndAnswers productId={currId} />
-        <Review productId={currId} />
+        {/* <Overview id = {currId} setCurrId = {setCurrId} /> */}
+        {/* <RelatedList productId={currId} setProductId={setCurrId} /> */}
+        <QuestionsAndAnswers productId={currId} seller={productSeller} product={ product} />
+        {/* <Review productId={currId} /> */}
         </div>
         )
     } else {

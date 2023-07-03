@@ -1,41 +1,36 @@
 import { useState, useEffect } from 'react';
 
-//Api
+// Api
 import Questions from '../../api/questions.js';
 
-//Components
-import QuestionSearch from './search/index.jsx';
-import QuestionList from './list/index.jsx';
-// import QuestionActions from './actions';
+// Components
+import QuestionSearch from './search.jsx';
+import QuestionList from './list.jsx';
+import AddQuestion from './addquestion.jsx';
 
-
-const QuestionsAndAnswers = ({ productId }) => {
+const QuestionsAndAnswers = ({ productId, seller, product }) => {
   const [questions, setQuestions] = useState([]);
   const [filter, setFilter] = useState('');
+  console.log('QuestionsAndAnswers', JSON.stringify(product));
 
   useEffect(() => {
     if (productId) {
       const api = Questions;
       api.getQuestions(productId)
         .then((response) => {
-          console.log('getQuestions', response);
           setQuestions(response.data.results);
         })
         .catch((err) => console.log('errr', err));
     }
   }, []);
 
-  useEffect(() => {
-    console.log('filter: ', filter);
-  }, [filter]);
-
-
   return (
     <>
       <h2>QUESTIONS & ANSWERS</h2>
-      <QuestionSearch setFilter={ setFilter } />
-      <QuestionList filter={ filter } questions={ questions } />
-      {/* <QuestionActions /> */}
+      {/* <QuestionSearch setFilter={ setFilter } /> */}
+      <QuestionList filter={ filter } questions={ questions } seller={ seller } product={product}/>
+
+      {/* <AddQuestion /> */}
     </>
   );
 };
