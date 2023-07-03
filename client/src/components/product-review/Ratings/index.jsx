@@ -26,7 +26,7 @@ const Ratings = ({ productId }) => {
     //get review metadata
     Reviews.getMetaData(productId)
       .then((response) => {
-        console.log(response.data);
+        console.log(`REVIEW META::::\n${JSON.stringify(response.data,null,2)}`);
         setReviewMeta(response.data)
       })
       .catch((err) => {
@@ -35,7 +35,7 @@ const Ratings = ({ productId }) => {
   }, []);
 
   return (
-    <div>
+    <div className="inline-block">
       {/* Entire left sidebar should be floated to the left and kept fixed relative to rating list */}
       <div>
         {/* Head of Widget */}
