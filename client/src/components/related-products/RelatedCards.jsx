@@ -21,6 +21,7 @@ const RelatedCards = ({ product, currentDetails, setProductId }) => {
   useEffect(() => {
     const savedProducts = getFromCloset();
     const savedProduct = savedProducts.find(item => item.product.id === product.product.id);
+
     if (savedProduct) {
       setStar(fill);
     } else {
@@ -56,8 +57,8 @@ const RelatedCards = ({ product, currentDetails, setProductId }) => {
   return (
     <React.Fragment>
       <div className="carousel-item">
-        <Card className="mt-6 w-96">
-          <CardHeader color="blue-gray" className="h-60">
+        <Card className="mt-6 w-96  overflow-hidden">
+          <CardHeader color="blue-gray" className="h-60 mt-5">
             {product.styles && product.styles.photos && product.styles.photos[0].url ? (
               <div className='relative'>
                 <img

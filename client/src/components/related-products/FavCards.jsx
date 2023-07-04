@@ -11,7 +11,7 @@ import Compare from './Compare.jsx';
 import axios from 'axios';
 import { saveToCloset, getFromCloset, removeFromCloset } from './accessYourCloset.js';
 
-const FavCards = ({ favProduct, setProductId }) => {
+const FavCards = ({ favProduct, setProductId, productId }) => {
   const unfill = "btn btn-circle";
   const fill = "btn btn-circle btn-error";
 
@@ -34,11 +34,11 @@ const FavCards = ({ favProduct, setProductId }) => {
     setProductId(favProduct.product.id);
   };
 
-  return (
+  return !(favProduct.product.id === productId) ? (
     <React.Fragment>
       <div className="carousel-item">
-        <Card className="mt-6 w-96">
-          <CardHeader color="blue-gray" className="relative h-56">
+        <Card className="mt-6 w-96 overflow-hidden rounded-lg">
+          <CardHeader color="blue-gray" className="relative h-56 mt-5">
             {favProduct.styles && favProduct.styles.photos && favProduct.styles.photos[0].url ? (
               <div className='relative'>
                 <img
@@ -67,9 +67,6 @@ const FavCards = ({ favProduct, setProductId }) => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
             </div>
-            {/* <div className='rating absolute top-0 right-0 m-2'>
-              <input name="rating-2" className={star} onClick={changeStyle} />
-            </div> */}
           </CardHeader>
           <CardBody>
             <span className="badge">{favProduct.product.category}</span>
@@ -93,8 +90,7 @@ const FavCards = ({ favProduct, setProductId }) => {
         </Card>
       </div>
     </React.Fragment>
-  );
+  ) : null;
 };
-
 
 export default FavCards;

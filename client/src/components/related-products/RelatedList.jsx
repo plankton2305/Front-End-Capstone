@@ -14,13 +14,14 @@ import {
 } from "@material-tailwind/react";
 
 // Rough draft for html structure
-const RelatedList = ({ productId, setProductId }) => {
+const RelatedList = ({ productId, setProductId}) => { //, currentPhoto
   const [storedProducts, setStoredProducts] = useState([]);
   const [productStyles, setProductStyles] = useState([]);
   const [favProducts, setFavProducts] = useState([]);
   const carouselRef1 = useRef(null);
   const carouselRef2 = useRef(null);
   const [currentDetails, setCurrentDetails] = useState([]);
+
   // let [relatedProducts, setRelatedProducts] = useState([]);
 
   const collectRelatedInfo = async () => { // make asynchronous
@@ -65,11 +66,23 @@ const RelatedList = ({ productId, setProductId }) => {
     }
   };
 
-  const collectCurrentInfo = () => {
-    Products.getProductById(productId)
-      .then(res => {
-        setCurrentDetails(res.data);
-      });
+  const collectCurrentInfo = async () => { // make asynchronous
+    try { // try catch block for error handling
+      const currentProductResponse = await Products.getProductById(productId);
+      const currentStylesResponse = await Products.getStyles(productId);
+
+      let defaultStyle = currentStylesResponse.data.results.find(style => style['default?'] === true);
+      const currentCollection = await Promise.all([currentProductResponse, currentStylesResponse]);
+
+      let currentData = {
+        product: currentProductResponse.data,
+        styles: defaultStyle
+      };
+
+      setCurrentDetails(currentData);
+    } catch (err) {
+      console.log('ERROR IN RELATEDLIST COLLECT CURRENT INFO', err);
+    }
   };
 
   useEffect(() => {
@@ -79,9 +92,6 @@ const RelatedList = ({ productId, setProductId }) => {
     const storedProducts = getFromCloset();
     setFavProducts(storedProducts);
   }, [productId]);
-
-  console.log('PRODUCTS INFO IS ', productStyles);
-  console.log('WOW SUCH FAV', favProducts)
 
   const scrollLeft1 = () => {
     carouselRef1.current.scroll({
@@ -111,6 +121,25 @@ const RelatedList = ({ productId, setProductId }) => {
     });
   };
 
+  const plus = <span className="material-symbols-outlined text-5xl text-white mt-5">
+  add_circle
+  </span>;
+  const minus = <span className="material-symbols-outlined text-5xl text-white mt-5">
+  do_not_disturb_on
+  </span>;
+
+  const [adding, setAdding] = useState(plus);
+
+  const changeAddCard = () => {
+    if (adding === plus) {
+      setAdding(minus);
+      saveToCloset(currentDetails);
+    } else {
+      setAdding(plus);
+      removeFromCloset(currentDetails.product.id);
+    }
+  };
+
   return (
     <React.Fragment>
       <Typography variant="h4" className='ml-50'>Related Products</Typography>
@@ -128,17 +157,22 @@ const RelatedList = ({ productId, setProductId }) => {
         <a className="btn btn-circle" onClick={scrollLeft2}>❮</a>
         <div ref={carouselRef2} className="carousel w-9/12 overflow-hidden rounded-box">
           <div className="carousel-item">
-            <Card className="mt-6 w-96 relative rounded-lg">
+            <Card className="mt-6 w-96 relative rounded-lg overflow-hidden">
               <CardHeader
                 color="blue-gray"
                 floated={false}
                 shadow={false}
                 color="transparent"
-                className="absolute h-full w-full bg-[url('../../_docs/add_outfit.png')] bg-cover bg-center transition duration-300 ease-in-out hover:-translate-y-3 hover:scale-110 rounded-lg"
+                className={`absolute h-full w-full bg-cover bg-center transition duration-300 ease-in-out hover:-translate-y-3 hover:scale-110 rounded-lg`}
+                style={{
+                  backgroundImage: currentDetails.styles && currentDetails.styles.photos && currentDetails.styles.photos[0].url
+                    ? `url(${currentDetails.styles.photos[0].url})`
+                    : "url('../../_docs/default_pic.png')",
+                }}
               >
                 <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 transition duration-300 ease-in-out hover:opacity-50 rounded-lg" />
               </CardHeader>
-              <CardBody className="relative py-14 px-10 md:px-50 flex flex-col items-center justify-start absolute inset-x-0 top-10 h-16 rounded-lg">
+              <CardBody className="relative py-14 px-10 md:px-50 flex flex-col items-center justify-start absolute inset-x-0 top-10 h-16 rounded-lg mt-8">
                 <Typography
                   variant="h2"
                   color="white"
@@ -146,17 +180,18 @@ const RelatedList = ({ productId, setProductId }) => {
                 >
                   Add to Outfit
                 </Typography>
-                <Typography
+                {adding}
+                {/* <Typography
                   variant="h2"
                   color="white"
                   className=" font-medium mt-14 leading-[1.5]">
-                  +
-                </Typography>
+                  {adding}
+                </Typography> */}
               </CardBody>
             </Card>
           </div>
           {favProducts.map((favProduct, index) => (
-            <FavCards key={index} favProduct={favProduct} setProductId={setProductId} />
+            <FavCards key={index} favProduct={favProduct} setProductId={setProductId} productId={productId} />
           ))}
         </div>
         <a className="btn btn-circle" onClick={scrollRight2}>❯</a>

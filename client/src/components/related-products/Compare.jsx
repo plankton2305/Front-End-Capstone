@@ -7,18 +7,18 @@ const Compare = ({ relatedId, currentDetails }) => {
   let longest = undefined;
   let shortest = undefined;
 
-  if (relatedId.product.features.length > currentDetails.features.length) {
+  if (relatedId.product.features.length > currentDetails.product.features.length) {
     longest = relatedId.product.features;
-    shortest = currentDetails.features;
+    shortest = currentDetails.product.features;
   } else {
-    longest = currentDetails.features;
+    longest = currentDetails.product.features;
     shortest = relatedId.product.features;
   }
 
   let filteredArray = longest.filter(longValue => shortest.some(shortValue => shortValue.feature === longValue.feature));
 
   let uniqRelatedId = relatedId.product.features.filter(value => filteredArray.every(filterValue => filterValue.feature !== value.feature));
-  let uniqCurrentDetails = currentDetails.features.filter(value => filteredArray.every(filterValue => filterValue.feature !== value.feature));
+  let uniqCurrentDetails = currentDetails.product.features.filter(value => filteredArray.every(filterValue => filterValue.feature !== value.feature));
 
   return (
     <React.Fragment>
@@ -26,7 +26,7 @@ const Compare = ({ relatedId, currentDetails }) => {
         <table className="table">
           <thead>
             <tr>
-              <th className='text-center'>{currentDetails.name}</th>
+              <th className='text-center'>{currentDetails.product.name}</th>
               <th></th>
               <th className='text-center'>{relatedId.product.name}</th>
             </tr>
