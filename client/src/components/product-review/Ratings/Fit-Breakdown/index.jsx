@@ -15,7 +15,7 @@ const FitBreakdown = ({ reviewMeta }) => {
       elements.push(
       <div>
         <p>{key}</p>
-        <BreakdownGraph averageRating={getPercentage(characteristics[key].value)}/>
+        <BreakdownGraph averageRating={characteristics[key].value}/>
       </div>)
     }
 
