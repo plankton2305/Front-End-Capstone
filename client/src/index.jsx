@@ -29,30 +29,30 @@ const App = () => {
       .catch((err) => { console.log('GET PRODUCTS ERROR: ', err) })
   }, []);
 
-  console.log('--- THIS IS THE CURRENT ID --->', currId);
+  // console.log('--- THIS IS THE CURRENT ID --->', currId);
 
   const condRender = () => {
     if (currId) {
       return (
         <div>
-          <Overview id={currId} setCurrId={setCurrId} />
-          <RelatedList productId={currId} setProductId={setCurrId} />
-          <QuestionsAndAnswers productId={currId} />
-          <Review productId={currId} />
+          {/* <Overview id={currId} setCurrId={setCurrId} /> */}
+          <RelatedList productId={currId} setProductId={setCurrId}/>
+          {/* <QuestionsAndAnswers productId={currId} /> */}
+          {/* <Review productId={currId} /> */}
         </div>
       )
     } else {
       return (<div></div>)
     }
-  }
+  };
 
   return (
     <div>
       {condRender()}
 
     </div>
-  )
-}
+  );
+};
 
 createRoot(document.getElementById('app')).render(
   <ThemeProvider>

@@ -10,45 +10,19 @@ import {
 import Compare from './Compare.jsx';
 import axios from 'axios';
 import { saveToCloset, getFromCloset, removeFromCloset } from './accessYourCloset.js';
+import CardImgSlider from './CardImgSlider.jsx';
 
-const RelatedCards = ({ product, currentDetails, setProductId }) => {
-  const unfill = 'mask mask-star-2 bg-orange-400 opacity-50 hover:opacity-100';
-  const fill = 'mask mask-star-2 bg-orange-400 hover:opacity-50';
-
-  const [star, setStar] = useState(unfill);
+const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved }) => {
   const [show, setShow] = useState(null);
-
-  useEffect(() => {
-    const savedProducts = getFromCloset();
-    const savedProduct = savedProducts.find(item => item.product.id === product.product.id);
-
-    if (savedProduct) {
-      setStar(fill);
-    } else {
-      setStar(unfill);
-    }
-  }, [product.product.id]);
 
   const showCompare = () => {
     if (!show) {
       setShow('open');
     } else {
       setShow(null);
+      setUpdateSaved(Date.now()); // re-render lists
     }
   };
-
-  const changeStyle = () => {
-    if (star === unfill) {
-      setStar(fill);
-      showCompare();
-      saveToCloset(product);
-    } else {
-      setStar(unfill);
-      removeFromCloset(product.product.id);
-    }
-  };
-
-  console.log(product);
 
   const selectNewProduct = () => {
     setProductId(product.product.id);
@@ -60,20 +34,10 @@ const RelatedCards = ({ product, currentDetails, setProductId }) => {
         <Card className="mt-6 w-96  overflow-hidden">
           <CardHeader color="blue-gray" className="h-60 mt-5">
             {product.styles && product.styles.photos && product.styles.photos[0].url ? (
-              <div className='relative'>
-                <img
-                  className='w-full'
-                  src={product.styles.photos[0].url}
-                  alt={"Product Preview"}
-                  layout={"fill"}
-                  className={"h-full w-full object-cover"}
-                  onClick={selectNewProduct}
-                />
-              </div>
+              <CardImgSlider product={product} selectNewProduct={selectNewProduct}/>
             ) : (
               <div className='realtive'>
                 <img
-                  className='w-full'
                   src='../../_docs/default_pic.png'
                   alt={"Product Preview"}
                   layout={"fill"}
@@ -83,10 +47,13 @@ const RelatedCards = ({ product, currentDetails, setProductId }) => {
               </div>
             )}
             <div className='rating absolute top-0 right-0 m-2'>
-              <input name="rating-8" className={star} onClick={changeStyle} />
-              <dialog id="my_modal_2" className="modal" open={show}>
+              <input name="rating-8" className='mask mask-star-2 bg-orange-400 opacity-50 hover:opacity-100 h-10 px-5' onClick={showCompare} />
+              <dialog id="my_modal_3" className="modal" open={show}>
                 <div method="dialog" className="modal-box">
-                  <Compare relatedId={product} currentDetails={currentDetails} />
+                  <div>
+                    <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={showCompare}>✕</button>
+                    <Compare relatedId={product} currentDetails={currentDetails} setUpdateSaved={setUpdateSaved} showCompare={showCompare} setShow={setShow} />
+                  </div>
                 </div>
                 <form method="dialog" className="modal-backdrop">
                   <button onClick={showCompare}></button>
@@ -103,7 +70,7 @@ const RelatedCards = ({ product, currentDetails, setProductId }) => {
               {product.styles && product.styles.sale_price ? (
                 <span className='sale-price'>
                   <s>${product.product.default_price} </s>
-                  ${product.styles.sale_price}
+                  <span className='text-red'>${product.styles.sale_price}</span>
                 </span>
               ) : (
                 <span className='original-price'>${product.product.default_price}</span>

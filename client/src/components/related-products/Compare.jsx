@@ -2,8 +2,9 @@ const { useState } = require('react');
 import React from 'react';
 import Products from '../../api/products.js';
 import _ from 'underscore';
+import { saveToCloset } from './accessYourCloset.js';
 
-const Compare = ({ relatedId, currentDetails }) => {
+const Compare = ({ relatedId, currentDetails, setUpdateSaved, showCompare, setShow }) => {
   let longest = undefined;
   let shortest = undefined;
 
@@ -19,6 +20,11 @@ const Compare = ({ relatedId, currentDetails }) => {
 
   let uniqRelatedId = relatedId.product.features.filter(value => filteredArray.every(filterValue => filterValue.feature !== value.feature));
   let uniqCurrentDetails = currentDetails.product.features.filter(value => filteredArray.every(filterValue => filterValue.feature !== value.feature));
+
+  const handleSubmitClick = () => {
+    saveToCloset(relatedId);
+    showCompare(); // close window on add
+  };
 
   return (
     <React.Fragment>
@@ -61,6 +67,9 @@ const Compare = ({ relatedId, currentDetails }) => {
             ))}
           </tbody>
         </table>
+        <div className='flex justify-center'>
+          <button className="btn mt-5" onClick={handleSubmitClick}>Add</button>
+        </div>
       </div>
     </React.Fragment>
   );

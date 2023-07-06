@@ -1,15 +1,19 @@
-
 // Save the product to localStorage
 export const saveToCloset = (product) => {
   const closetData = localStorage.getItem('yourCloset');
   let closet = closetData ? JSON.parse(closetData) : [];
+  console.log('closet', closet);
 
+  console.log('what is this', product);
   // Check if the product is already saved
   const existingProduct = closet.find((item) => item.product.id === product.product.id);
+  console.log('exists', existingProduct);
   if (!existingProduct) {
+    console.log('being saved', product);
     closet.push(product);
     localStorage.setItem('yourCloset', JSON.stringify(closet));
   }
+  console.log('CLOSET');
 };
 
 // Retrieve all products from localStorage
@@ -27,4 +31,5 @@ export const removeFromCloset = (productId) => {
   const updatedCloset = closet.filter((item) => item.product.id !== productId);
 
   localStorage.setItem('yourCloset', JSON.stringify(updatedCloset));
+
 };
