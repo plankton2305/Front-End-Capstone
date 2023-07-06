@@ -31,8 +31,8 @@ const App = () => {
 
   const condRender = () => {
     if (currId) {
-      return (<div>
-        <div className = "flex justify-center">
+      return (<div className = "flex flex-col justify-content">
+        <div>
           <Overview id={currId} setCurrId={setCurrId} />
         </div>
         <div>

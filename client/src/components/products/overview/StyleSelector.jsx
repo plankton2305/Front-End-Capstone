@@ -29,7 +29,7 @@ const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
   };
 
   return (
-    <div>
+    <>
       <div>
         <b>Style &gt;</b> {currStyle.name}
       </div>
@@ -37,7 +37,7 @@ const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
       <table>
         {renderSelectors()}
       </table>
-    </div>
+    </>
   );
 };
 

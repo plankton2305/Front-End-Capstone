@@ -12,7 +12,7 @@ const ImageList = ({photoArr, setPhotoIndex, currPhoto}) => {
   };
 
   return (
-    <div className = "overflow-auto">
+    <div>
       {renderList()}
     </div>
   );

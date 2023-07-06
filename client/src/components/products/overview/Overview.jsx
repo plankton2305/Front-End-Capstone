@@ -59,7 +59,6 @@ const Overview = ({ id, setCurrId }) => {
 
   let currStyle = productStyles[currStyleIndex];
 
-
   const handleClick = () => {
     if (id === 37315) {
       setCurrId(37320);
@@ -68,14 +67,26 @@ const Overview = ({ id, setCurrId }) => {
     }
   };
 
+  const [styleSelectorVisibility, setStyleSelectorVisibility] = useState('');
+
+  // useEffect(() => {
+  //   if (expanded) {
+  //     setGalleryWidth('w-full');
+  //     setStyleSelectorVisibility('hidden');
+  //   } else {
+  //     setGalleryWidth('w-3/4');
+  //     setStyleSelectorVisibility('');
+  //   }
+  // }, [expanded]);
+
   const condRender = () => {
     if (id && currProd && productStyles.length > 0) {
       return (
-        <div className = "flex flex-row">
+        <div className = "flex flex-row justify-center">
           <div>
             <ImageGallery style = {productStyles[currStyleIndex]}/>
           </div>
-          <div>
+          <div className = "m-2 p-2">
             <StyleSelector
               styleArray={productStyles}
               currStyle={currStyle}
@@ -90,11 +101,11 @@ const Overview = ({ id, setCurrId }) => {
   };
 
   return (
-    <div>
-      OverView
-      <button className="text-white bg-blue-700 hover:bg-blue-800" onClick={handleClick}>CHANGE ID TO 37314</button>
+    <>
+
+      {/* OverView <button className="text-white bg-blue-700 hover:bg-blue-800" onClick={handleClick}>CHANGE ID TO 37314</button> */}
       {condRender()}
-    </div>
+    </>
   );
 };
 
