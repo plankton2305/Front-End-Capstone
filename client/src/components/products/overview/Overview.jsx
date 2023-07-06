@@ -3,6 +3,8 @@ import StyleSelector from './StyleSelector.jsx';
 import Products from '../../../api/products.js';
 import AddToCart from './AddToCart.jsx';
 import ImageGallery from './ImageGallery.jsx';
+import ProductInfo from './ProductInfo.jsx';
+import ProductDetails from './ProductDetails.jsx';
 
 const Overview = ({ id, setCurrId }) => {
   console.log('OVERVIEW');
@@ -82,16 +84,22 @@ const Overview = ({ id, setCurrId }) => {
   const condRender = () => {
     if (id && currProd && productStyles.length > 0) {
       return (
-        <div className = "flex flex-row justify-center">
-          <div>
-            <ImageGallery style = {productStyles[currStyleIndex]}/>
+        <div className = "flex flex-col">
+          <div className = "flex flex-row justify-center">
+            <div>
+              <ImageGallery style = {productStyles[currStyleIndex]}/>
+            </div>
+            <div className = "m-2 p-2">
+              <ProductInfo currProd = {currProd}/>
+              <StyleSelector
+                styleArray={productStyles}
+                currStyle={currStyle}
+                setCurrStyleIndex={setCurrStyleIndex} />
+              <AddToCart style = {currStyle} id = {id}/>
+            </div>
           </div>
-          <div className = "m-2 p-2">
-            <StyleSelector
-              styleArray={productStyles}
-              currStyle={currStyle}
-              setCurrStyleIndex={setCurrStyleIndex} />
-            <AddToCart style = {currStyle} id = {id}/>
+          <div>
+            <ProductDetails currProd = {currProd}/>
           </div>
         </div>
       );
