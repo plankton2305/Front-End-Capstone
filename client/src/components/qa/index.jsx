@@ -27,9 +27,10 @@ const QuestionsAndAnswers = ({ productId, seller, product }) => {
   return (
     <>
       <h2>QUESTIONS & ANSWERS</h2>
-      {/* <QuestionSearch setFilter={ setFilter } /> */}
+      <QuestionSearch setFilter={ setFilter } />
+      {/* <div style={{maxHeight: '20vh', overflowY: 'scroll', overflow: 'clip'}}> */}
       <QuestionList filter={ filter } questions={ questions } seller={ seller } product={product}/>
-
+      {/* </div> */}
       {/* <AddQuestion /> */}
     </>
   );

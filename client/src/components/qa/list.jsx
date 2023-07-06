@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import _ from 'underscore';
 
 import Questions from '../../api/questions.js';
+import AddQuestion from './addquestion.jsx';
 import AddAnswer from './addanswer.jsx';
 
 const Answer = ({ answer, isSeller }) => {
@@ -61,10 +62,10 @@ const AnswerList = ({ answers, seller }) => {
   return (
     <>
       {
+
         sortedSellersFirst.map(([key, value], index) => {
           let visibility = index >= defaultNumberOfAnswers ? 'hidden' : '';
           let isSeller = seller === value.answerer_name;
-          console.log(index, defaultNumberOfAnswers);
           if (!limitAnswers) {
             visibility = '';
           }
@@ -120,34 +121,42 @@ const Question = ({ question, seller, product }) => {
 };
 
 const QuestionList = ({ filter, questions, seller }) => {
-  const [limitQuestions, setlimitQuestions] = useState(true);
-  const defaultNumberOfQuestions = 4;
+  const [limitQuestions, setlimitQuestions] = useState(4);
+
   const sortedQuestions = _.sortBy(questions, 'question_helpfulness').reverse();
+  const filteredQuestions = sortedQuestions.filter((question, index) => {
+    //filter by search term
+    let searchFilterTest = filter.length >= 3 ? question.question_body.toLowerCase().includes(filter.toLowerCase()) : true;
+    return searchFilterTest;
+  });
+
+  let limitedQuestions = filteredQuestions.filter((filteredQuestions, index) => {
+    return index < limitQuestions;
+  });
+
+  useEffect(() => {
+    setlimitQuestions(4);
+  }, [filter]);
 
   return (
     <>
       {
-        sortedQuestions.map((question, index) => {
-          let visibility = index >= defaultNumberOfQuestions ? 'hidden' : '';
-          if (!limitQuestions) {
-            visibility = '';
-          }
-
+        limitedQuestions.map((question, index) => {
           return (
-            <div key={index} className={ visibility }>
+            <div key={index}>
               <Question key={ index } question={ question } filter={ filter } seller={ seller } />
             </div>
           );
         })
       }
-      { sortedQuestions.length === 0 && <button>Submit a new question</button> }
+      { limitedQuestions.length === 0 && <button>Submit a new question</button> }
       {
-        sortedQuestions.length > defaultNumberOfQuestions &&
+        filteredQuestions.length > limitQuestions &&
         <button
-          onClick={() => { setlimitQuestions(!limitQuestions); }}
+          onClick={() => { setlimitQuestions(limitQuestions + 2); }}
         >More Answered Questions</button>
       }
-
+      <AddQuestion />
     </>
   );
 };

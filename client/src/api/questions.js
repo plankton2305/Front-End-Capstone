@@ -6,7 +6,7 @@ class Questions {
     this.api = new Api('qa');
   }
 
-  getQuestions(productId, count = 1000, page = 1) {
+  getQuestions(productId, count = 750, page = 1) {
     return this.api.get(`/questions?product_id=${productId}&count=${count}&page=${page}`);
   }
 
@@ -21,8 +21,6 @@ class Questions {
   reportQuestion(questionId) {
     return this.api.put(`/questions/${questionId}/report`);
   }
-
-
 
   markAnswerHelpful(answerId) {
     return this.api.put(`/answers/${answerId}/helpful`);

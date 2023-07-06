@@ -19,11 +19,12 @@ const AddQuestion = () => {
 
   return (
     <>
-      <button className="btn" onClick={()=>window['add-question'].showModal()}>open modal</button>
+      <button className="btn" onClick={()=>window['add-question'].showModal()}>Ask Your Question</button>
 
       <dialog id="add-question" className="modal">
         <form className="modal-box">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={clickHandler}>✕</button>
+          <h3 className="font-bold text-lg">Ask Your Question</h3>
           <label>Question<textarea maxLength="1000" style={{resize: 'none'}} required onInvalid={validate}/></label>
 
           <label><input type="text" maxLength="60" placeholder="Example: jackson11!" required onInvalid={validate}/><br />For privacy reasons, do not use your full name or email address</label>
@@ -31,6 +32,7 @@ const AddQuestion = () => {
           <label><input type="email" maxLength="60" placeholder="Why did you like the product or not?" required onInvalid={validate}/><br />For authentication reasons, you will not be emailed</label>
 
           <button type="submit">Submit</button>
+          <div>About the [Product Name Here]</div>
         </form>
       </dialog>
     </>
