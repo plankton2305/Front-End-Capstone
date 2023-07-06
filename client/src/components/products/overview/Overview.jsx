@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import StyleSelector from './StyleSelector.jsx';
 import Products from '../../../api/products.js';
 import AddToCart from './AddToCart.jsx';
+import ImageGallery from './ImageGallery.jsx';
 
 const Overview = ({ id, setCurrId }) => {
   console.log('OVERVIEW');
@@ -60,22 +61,27 @@ const Overview = ({ id, setCurrId }) => {
 
 
   const handleClick = () => {
-    if (id === 37313) {
+    if (id === 37315) {
       setCurrId(37320);
     } else {
-      setCurrId(37313);
+      setCurrId(37315);
     }
   };
 
   const condRender = () => {
     if (id && currProd && productStyles.length > 0) {
       return (
-        <div>
-          <StyleSelector
-            styleArray={productStyles}
-            currStyle={currStyle}
-            setCurrStyleIndex={setCurrStyleIndex} />
-          <AddToCart style = {currStyle} id = {id}/>
+        <div className = "flex flex-row">
+          <div>
+            <ImageGallery style = {productStyles[currStyleIndex]}/>
+          </div>
+          <div>
+            <StyleSelector
+              styleArray={productStyles}
+              currStyle={currStyle}
+              setCurrStyleIndex={setCurrStyleIndex} />
+            <AddToCart style = {currStyle} id = {id}/>
+          </div>
         </div>
       );
     } else {
