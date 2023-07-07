@@ -185,33 +185,34 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
 
   return (
     <React.Fragment>
-      <div className='grid justify-self-center ml-10'>
+      <div className='grid justify-center'>
         <Typography variant="h4">Related Products</Typography>
-        <div className='carousel-container w-11/12 flex items-center'>
+        <div className='carousel-container w-11/12 flex items-center bg-[#c5d8d6] border border-solid border-[#455f68] rounded border-opacity-50 '>
           {showLeftArrow1 && (
-            <a className="btn btn-circle" onClick={scrollLeft1}>❮</a>
+            <a className="btn btn-circle mr-2" onClick={scrollLeft1}>❮</a>
           )}
           <div ref={carouselRef1} className="carousel w-11/12 overflow-hidden rounded-box">
             {productStyles.map((product, index) => (
               <RelatedCards key={index} product={product} currentDetails={currentDetails} setProductId={setProductId} setUpdateSaved={setUpdateSaved} />
             ))}
           </div>
+          {/* <div className="to-bg-black-10 absolute h-full w-full bg-gradient-to-l via-transparent from-black/80 via-black/50" /> */}
+          {/* <div className='float-right bg-gradient-to-r from-transparent via-transparent to-[#2b3d46]'></div>  */}
           {showRightArrow1 && (
-            <a className="btn btn-circle" onClick={scrollRight1}>❯</a>
+            <a className="btn btn-circle ml-2" onClick={scrollRight1}>❯</a>
           )}
         </div>
         <Typography variant="h4" className='mt-5'>Your Outfit</Typography>
-        <div className='carousel-container w-11/12 flex items-center'>
+        <div className='carousel-container w-11/12 flex items-center bg-[#c5d8d6] border border-solid border-[#455f68] rounded border-opacity-50'>
           {showLeftArrow2 && (
-            <a className="btn btn-circle" onClick={scrollLeft2}>❮</a>
+            <a className="btn btn-circle mr-2" onClick={scrollLeft2}>❮</a>
           )}
           <div ref={carouselRef2} className="carousel w-11/12 overflow-hidden rounded-box">
 
             <div className="carousel-item shrink-0">
-              {/* <Card className="mt-6 w-96 rounded-lg overflow-hidden shrink-0" onClick={changeAddCard}> */}
                 <Card
                   shadow={false}
-                  className="h-[25rem] w-96 overflow-hidden mt-6" onClick={changeAddCard}
+                  className="h-[25.5rem] w-96 overflow-hidden mt-3 ml-5" onClick={changeAddCard}
                 >
                   <figure
                     floated="false"
@@ -244,7 +245,7 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
             ))}
           </div>
           {showRightArrow2 && (
-            <a className="btn btn-circle" onClick={scrollRight2}>❯</a>
+            <a className="btn btn-circle ml-2" onClick={scrollRight2}>❯</a>
           )}
         </div>
       </div>

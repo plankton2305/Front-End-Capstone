@@ -27,7 +27,7 @@ const ProductInfo = ({currProd, style}) => {
     if (currProd !== null && currProd !== undefined) {
       return (
         <div>
-          <span className="badge opacity-80 text-lg font-sans tracking-tighter font-extralight font-sky-500">
+          <span className="badge bg-[#455f68] opacity-90 text-white text-lg font-sans tracking-tighter font-extralight font-sky-500">
             {currProd.category}
           </span>
           <div className = "text-3xl font-sans font-semibold">
