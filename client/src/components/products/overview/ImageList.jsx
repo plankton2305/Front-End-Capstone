@@ -7,12 +7,12 @@ const ImageList = ({photoArr, setPhotoIndex, currPhoto}) => {
   let buttIndex = -1;
   const renderList = () => {
     return photoArr.map((item, index)=>{
-      return <ImageButton key = {index} photoUrl = {item} buttIndex = {buttIndex += 1} setFunc = {setPhotoIndex} currPhoto = {currPhoto}/>;
+      return <div key = {index} className='carousel-item scroll-mt-2'><ImageButton photoUrl = {item} buttIndex = {buttIndex += 1} setFunc = {setPhotoIndex} currPhoto = {currPhoto}/></div>;
     });
   };
 
   return (
-    <div>
+    <div className='h-[720px] carousel carousel-vertical'>
       {renderList()}
     </div>
   );
