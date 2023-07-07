@@ -10,7 +10,7 @@ const ProductInfo = ({currProd, style, productRating}) => {
           <div className = 'm-1'>
             <s>{`$${currProd.default_price}`}</s>
           </div>
-          <div className = 'text-red-500 m-1'>
+          <div className = 'text-red m-1'>
             {`$${style.sale_price}`}
           </div>
         </div>
@@ -37,7 +37,7 @@ const ProductInfo = ({currProd, style, productRating}) => {
           <div className = "text-3xl font-sans font-semibold">
             {currProd.name}
           </div>
-          <div className = "text-xl font-thin font-teal-500">
+          <div className = "text-xl font-thin">
             {renderCost()}
           </div>
         </div>
