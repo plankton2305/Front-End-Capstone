@@ -24,11 +24,11 @@ const Ratings = ({ productId }) => {
     //get review metadata
     Reviews.getMetaData(productId)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setReviewMeta(response.data)
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
   }, []);
 

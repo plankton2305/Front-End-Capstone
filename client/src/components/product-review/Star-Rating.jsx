@@ -27,7 +27,7 @@ const StarRating = ({ reviewMeta }) => {
       numOfRatings += Number(ratings[val]);
     }
 
-    console.log(numOfRatings)
+    // console.log(numOfRatings)
     return numOfRatings ? ( sum / numOfRatings ) : 0;
   }
 

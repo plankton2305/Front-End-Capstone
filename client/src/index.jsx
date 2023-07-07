@@ -25,36 +25,31 @@ const App = () => {
         setCurrId(res.data[0]?.id || '')
       })
       .catch((err) => { console.log('GET PRODUCTS ERROR: ', err) })
-  }, [])
+  }, []);
 
   const condRender = () => {
     if (currId) {
-      return (<div className = "flex flex-col justify-content">
+      return (
         <div>
-          <Overview id={currId} setCurrId={setCurrId} />
-        </div>
-        <div className = "flex flex-row justify-center">
+          <div className = "flex flex-col justify-content">
+            <Overview id={currId} setCurrId={setCurrId} />
+          </div>
           <RelatedList productId={currId} setProductId={setCurrId} />
-        </div>
-        <div>
           <QuestionsAndAnswers productId={currId} />
-        </div>
-        <div>
           <Review productId={currId} />
         </div>
-      </div>
       )
     } else {
       return (<div></div>)
     }
-  }
+  };
 
   return (
     <div>
       {condRender()}
     </div>
-  )
-}
+  );
+};
 
 createRoot(document.getElementById('app')).render(
   <ThemeProvider>
