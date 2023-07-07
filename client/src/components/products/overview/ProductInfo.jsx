@@ -1,10 +1,31 @@
 import {useState, useEffect} from "react";
 
-const ProductInfo = ({currProd}) => {
+const ProductInfo = ({currProd, style}) => {
+
+  const renderCost = () => {
+    if (style.sale_price !== undefined && style.sale_price !== null) {
+      return (
+        <div className = "flex flex-row">
+          <div className = 'text-red-500 m-1'>
+            {`$${style.sale_price}`}
+          </div>
+          <div className = 'm-1'>
+            <s>{`$${currProd.default_price}`}</s>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {`$${currProd.default_price}`}
+        </div>
+      );
+    }
+  };
 
   const renderInfo = () => {
     if (currProd !== null && currProd !== undefined) {
-      console.log('***********', currProd)
+      console.log('//////////////***********////////////////', style);
       return (
         <div>
           <div>
@@ -14,7 +35,7 @@ const ProductInfo = ({currProd}) => {
             {currProd.name}
           </div>
           <div>
-            {`$${currProd.default_price}`}
+            {renderCost()}
           </div>
         </div>
       );

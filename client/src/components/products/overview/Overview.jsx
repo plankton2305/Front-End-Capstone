@@ -34,7 +34,6 @@ const Overview = ({ id, setCurrId }) => {
       return a;
     }
   };
-  //useEffects
   useEffect(() => {
     console.log('currSTYLE Index IS: ', currStyleIndex);
   }, [currStyleIndex]);
@@ -42,44 +41,20 @@ const Overview = ({ id, setCurrId }) => {
   useEffect(() => {
     Products.getProductById(id)
       .then((res) => {
-        // console.log('getProduct SUCCESS');
-        // console.log(res.data);
         setCurrProd(res.data);
       })
       .catch((err) => { console.log('getProduct ERROR: ', err); });
     Products.getStyles(id)
       .then((res) => {
-        // console.log('getStyles SUCCESS');
-        // console.log(res.data.results);
         setProductStyles(productStylesSetup(res.data.results));
       })
       .catch((err) => { console.log('getStyles ERROR: ', err); });
     setCurrStyleIndex(0);
   }, [id]);
 
-  // console.log('ProductStyles is :', productStyles);
-
   let currStyle = productStyles[currStyleIndex];
 
-  const handleClick = () => {
-    if (id === 37315) {
-      setCurrId(37320);
-    } else {
-      setCurrId(37315);
-    }
-  };
-
   const [styleSelectorVisibility, setStyleSelectorVisibility] = useState('');
-
-  // useEffect(() => {
-  //   if (expanded) {
-  //     setGalleryWidth('w-full');
-  //     setStyleSelectorVisibility('hidden');
-  //   } else {
-  //     setGalleryWidth('w-3/4');
-  //     setStyleSelectorVisibility('');
-  //   }
-  // }, [expanded]);
 
   const condRender = () => {
     if (id && currProd && productStyles.length > 0) {
@@ -90,7 +65,7 @@ const Overview = ({ id, setCurrId }) => {
               <ImageGallery style = {productStyles[currStyleIndex]}/>
             </div>
             <div className = "m-2 p-2">
-              <ProductInfo currProd = {currProd}/>
+              <ProductInfo currProd = {currProd} style = {productStyles[currStyleIndex]}/>
               <StyleSelector
                 styleArray={productStyles}
                 currStyle={currStyle}
@@ -110,8 +85,6 @@ const Overview = ({ id, setCurrId }) => {
 
   return (
     <>
-
-      {/* OverView <button className="text-white bg-blue-700 hover:bg-blue-800" onClick={handleClick}>CHANGE ID TO 37314</button> */}
       {condRender()}
     </>
   );
