@@ -69,11 +69,11 @@ const PhotoView = ({photoArr, photoIndex, setPhotoIndex, setLeftTransform}) => {
         src = {currImageString} onClick = {imageClick} style = {zoomObj()}></img>
       <img src = 'https://cdn4.iconfinder.com/data/icons/geomicons/32/672373-chevron-left-512.png'
         className = "w-16 h-16 absolute top-[50%] -translate-x-0 translate-y-[-50%] left-2 cursor-pointer p-2
-        border-black bg-white bg-opacity-50 hover:border-4 transition-all hover:bg-opacity-75"
+        border-black rounded-full bg-white bg-opacity-50 hover:border-4 transition-all hover:bg-opacity-75"
         onClick = {leftClick} style = {{}}></img>
       <img src = 'https://cdn4.iconfinder.com/data/icons/geomicons/32/672374-chevron-right-512.png'
         className = "w-16 h-16 absolute top-[50%] -translate-x-0 translate-y-[-50%] right-2 cursor-pointer p-2
-        border-black bg-white bg-opacity-50 hover:border-4 transition-all hover:bg-opacity-75"
+        border-black rounded-full bg-white bg-opacity-50 hover:border-4 transition-all hover:bg-opacity-75"
         onClick = {rightClick}></img>
     </div>
   );

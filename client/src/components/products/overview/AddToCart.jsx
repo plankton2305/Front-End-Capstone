@@ -69,7 +69,7 @@ const AddToCart = ({ style, id }) => {
             </td>
             <td>
               {quantities[selectedSize] === undefined ?
-                <select className="w-20 h-10 rounded-none px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700">
+                <select className="w-20 h-10 rounded-sm px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700">
                   <option className='font-bold' selected disabled hidden>-</option>
                 </select>
                 :
@@ -79,12 +79,12 @@ const AddToCart = ({ style, id }) => {
           :
           <tr>
             <td>
-              <select disabled className="w-40 h-10 rounded-none px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700">
+              <select disabled className="w-40 h-10 rounded-sm px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700">
                 <option className='font-bold' selected disabled hidden>Out of Stock</option>
               </select>
             </td>
             <td>
-              <select disabled className="w-20 h-10 rounded-none px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700">
+              <select disabled className="w-20 h-10 rounded-sm px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700">
                 <option className='font-bold' selected disabled hidden>-</option>
               </select>
             </td>
@@ -92,7 +92,7 @@ const AddToCart = ({ style, id }) => {
         }
         <tr>
           <th colspan = "2">
-            {isValidArray ? <button className = "transition-all w-60 bg-white hover:bg-gray-700 text-slate-700 hover:text-white font-bold py-2 px-4 rounded-none border-black border-2 hover:border-slate-700" onClick = {cartClick}>Add to Cart</button> : <div></div>}
+            {isValidArray ? <button className = "transition-all w-60 bg-white hover:bg-gray-700 text-slate-700 hover:text-white font-bold py-2 px-4 rounded-sm border-black border-2 hover:border-slate-700" onClick = {cartClick}>Add to Cart</button> : <div></div>}
           </th>
         </tr>
       </table>

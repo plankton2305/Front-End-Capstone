@@ -37,7 +37,7 @@ const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
             ) : (
               <div className='realtive'>
                 <img
-                  src='../../_docs/default_pic.png'
+                  src='default_pic.png'
                   alt={"Product Preview"}
                   layout={"fill"}
                   className={"h-full w-full object-cover"}
@@ -52,7 +52,7 @@ const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
             </div>
           </CardHeader>
           <CardBody>
-            <span className="badge">{favProduct.product.category}</span>
+            <span className="badge opacity-80">{favProduct.product.category}</span>
             <Typography variant="h5" color="blue-gray" className="mb-2" onClick={selectNewProduct}>
               {favProduct.product.name}
             </Typography>

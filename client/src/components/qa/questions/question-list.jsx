@@ -53,7 +53,7 @@ const QuestionList = ({ filter, questions, productName }) => {
       {
         renderQuestions.length < questionCount &&
         <button
-          className="btn"
+          className="btn bg-[transparent]"
           onClick={() => { setlimitQuestions(limitQuestions + 5); }}
         >More Answered Questions</button>
       }

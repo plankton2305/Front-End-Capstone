@@ -29,9 +29,13 @@ const QuestionsAndAnswers = ({ product }) => {
 
   return (
     <>
-      <h2 className="mb-4">QUESTIONS & ANSWERS</h2>
-      <QuestionSearch setFilter={ setFilter } />
-      <QuestionList filter={ filter } questions={ questions } productName={productName} />
+      <h2 className="mb-4 text-2xl">QUESTIONS & ANSWERS</h2>
+      <div className="mx-6">
+        <QuestionSearch setFilter={ setFilter } />
+        <div className="mh-[50vh] overflow-y-auto">
+          <QuestionList filter={ filter } questions={ questions } productName={productName} />
+        </div>
+      </div>
     </>
   );
 };

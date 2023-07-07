@@ -6,7 +6,7 @@ import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import ProductDetails from './ProductDetails.jsx';
 
-const Overview = ({ id, setCurrId }) => {
+const Overview = ({ id, setCurrId, setProduct }) => {
   const [currStyleIndex, setCurrStyleIndex] = useState(-1);
   const [currProd, setCurrProd] = useState();
   const [productStyles, setProductStyles] = useState([]);
@@ -37,6 +37,7 @@ const Overview = ({ id, setCurrId }) => {
     Products.getProductById(id)
       .then((res) => {
         setCurrProd(res.data);
+        setProduct(res.data);
       })
       .catch((err) => { console.log('getProduct ERROR: ', err); });
     Products.getStyles(id)

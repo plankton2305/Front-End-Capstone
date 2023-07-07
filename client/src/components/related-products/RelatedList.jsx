@@ -185,13 +185,13 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
 
   return (
     <React.Fragment>
-      <div className='grid justify-self-center'>
-        <Typography variant="h4" className='ml-50'>Related Products</Typography>
-        <div className='carousel-container flex justify-center w-9/12 flex items-center'>
+      <div className='grid justify-self-center ml-10'>
+        <Typography variant="h4">Related Products</Typography>
+        <div className='carousel-container w-11/12 flex items-center'>
           {showLeftArrow1 && (
             <a className="btn btn-circle" onClick={scrollLeft1}>❮</a>
           )}
-          <div ref={carouselRef1} className="carousel w-9/12 overflow-hidden rounded-box">
+          <div ref={carouselRef1} className="carousel w-11/12 overflow-hidden rounded-box">
             {productStyles.map((product, index) => (
               <RelatedCards key={index} product={product} currentDetails={currentDetails} setProductId={setProductId} setUpdateSaved={setUpdateSaved} />
             ))}
@@ -200,12 +200,12 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
             <a className="btn btn-circle" onClick={scrollRight1}>❯</a>
           )}
         </div>
-        <Typography variant="h4" className='ml-50'>Your Outfit</Typography>
-        <div className='carousel-container flex justify-center mt-5 w-9/12 flex items-center'>
+        <Typography variant="h4" className='mt-5'>Your Outfit</Typography>
+        <div className='carousel-container w-11/12 flex items-center'>
           {showLeftArrow2 && (
             <a className="btn btn-circle" onClick={scrollLeft2}>❮</a>
           )}
-          <div ref={carouselRef2} className="carousel w-9/12 overflow-hidden rounded-box">
+          <div ref={carouselRef2} className="carousel w-11/12 overflow-hidden rounded-box">
 
             <div className="carousel-item shrink-0">
               {/* <Card className="mt-6 w-96 rounded-lg overflow-hidden shrink-0" onClick={changeAddCard}> */}
@@ -221,7 +221,7 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
                     style={{
                       backgroundImage: currentDetails.styles && currentDetails.styles.photos && currentDetails.styles.photos[0].url
                         ? `url(${currentDetails.styles.photos[0].url})`
-                        : "url('../../_docs/default_pic.png')",
+                        : "url('default_pic.png')",
                     }}
                   >
                     <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 transition duration-300 ease-in-out hover:opacity-50 rounded-lg" />
@@ -230,7 +230,7 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
                     <Typography
                       variant="h3"
                       color="white"
-                      className="font-medium leading-[1.5]"
+                      className="font-medium leading-[1.5] font-family-none"
                     >
                       {currentCardText}
                     </Typography>

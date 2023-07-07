@@ -19,7 +19,7 @@ const AddQuestion = () => {
 
   return (
     <>
-      <button className="btn" onClick={()=>window['add-question'].showModal()}>Ask Your Question</button>
+      <button className="btn bg-[transparent]" onClick={()=>window['add-question'].showModal()}>Ask Your Question</button>
 
       <dialog id="add-question" className="modal">
         <form className="modal-box">

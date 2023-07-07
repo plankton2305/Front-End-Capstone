@@ -30,7 +30,7 @@ const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved })
 
   return (
     <React.Fragment>
-      <div className="carousel-item">
+      <div className="carousel-item ml-5">
         <Card className="mt-6 w-96  overflow-hidden">
           <CardHeader color="blue-gray" className="h-60 mt-5">
             {product.styles && product.styles.photos && product.styles.photos[0].url ? (
@@ -38,10 +38,10 @@ const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved })
             ) : (
               <div className='realtive'>
                 <img
-                  src='../../_docs/default_pic.png'
+                  src='default_pic.png'
                   alt={"Product Preview"}
                   layout={"fill"}
-                  className={"h-full w-full object-cover"}
+                  className={"h-full w-full object-bottom"}
                   onClick={selectNewProduct}
                 />
               </div>
@@ -62,7 +62,7 @@ const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved })
             </div>
           </CardHeader>
           <CardBody>
-            <span className="badge">{product.product.category}</span>
+            <span className="badge opacity-80">{product.product.category}</span>
             <Typography variant="h5" color="blue-gray" className="mb-2" onClick={selectNewProduct}>
               {product.product.name}
             </Typography>

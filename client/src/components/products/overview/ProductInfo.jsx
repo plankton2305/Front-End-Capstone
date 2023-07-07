@@ -27,13 +27,13 @@ const ProductInfo = ({currProd, style}) => {
     if (currProd !== null && currProd !== undefined) {
       return (
         <div>
-          <div>
+          <span className="badge opacity-80 text-lg font-sans tracking-tighter font-extralight font-sky-500">
             {currProd.category}
-          </div>
-          <div>
+          </span>
+          <div className = "text-3xl font-sans font-semibold">
             {currProd.name}
           </div>
-          <div>
+          <div className = "text-xl font-thin font-teal-500">
             {renderCost()}
           </div>
         </div>

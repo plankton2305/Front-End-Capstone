@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const Dropdown = ({ itemsArray, defaultValue, setterFunc, size }) => {
 
-  const selectString = `w-${size} h-10 rounded-none px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700`;
+  const selectString = `w-${size} h-10 rounded-sm px-4 bg-white border-black border-2 hover:bg-white hover:border-slate-700`;
   let k = -1;
 
   const handleClick = (e) => {
@@ -13,7 +13,7 @@ const Dropdown = ({ itemsArray, defaultValue, setterFunc, size }) => {
     return itemsArray.map((item, index) => {
       return <option
         key = {index}
-        className='font-bold rounded-none'
+        className='font-bold rounded-sm'
         value={`${k += 1}`}
         name={item}>{item}</option>;
     });
