@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 
 const StyleButton = ({ style, setCurrStyleIndex, buttIndex, currStyleId }) => {
 
-  // console.log('STYLE BUTTON')
   const handleClick = (e) => {
-    // e.target.className = style2
-    // console.log('button click: ', buttIndex)
     if (currStyleId !== style.style_id) {
       setCurrStyleIndex(buttIndex);
     }
@@ -15,14 +12,14 @@ const StyleButton = ({ style, setCurrStyleIndex, buttIndex, currStyleId }) => {
   const checkRender = () => {
     if (currStyleId === style.style_id) {
       return (
-        <img className="top-1 left-14 absolute w-5 h-5 rounded-full border-2 border-slate-900" src={check}></img>
+        <img className="top-1 right-1 absolute w-5 h-5 rounded-full border-2 border-slate-900" src={check}></img>
       );
     }
   };
-  //replace button with image
+
   return (
     <div className="relative m-1 cursor-pointer" onClick={handleClick}>
-      <img className="w-16 h-16 rounded-full object-cover hover:blur-sm transition-all duration-400 ease-out-in" src={thumb}></img>
+      <img className="w-24 h-24 rounded-full object-cover hover:blur-sm transition-all duration-400 ease-out-in" src={thumb}></img>
       {checkRender()}
     </div>
   );

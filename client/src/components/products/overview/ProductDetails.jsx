@@ -23,8 +23,8 @@ const ProductDetails = ({currProd}) => {
   };
   const renderText = () => {
     return (
-      <div className = "flex flex-col">
-        <div>
+      <div className = "flex flex-col w-64">
+        <div className = "my-2 italic font-extralight">
           {renderSlogan()}
         </div>
         <div>
@@ -37,12 +37,12 @@ const ProductDetails = ({currProd}) => {
   const renderFeatures = () => {
     if (currProd.features !== null && currProd.features !== undefined) {
       return (
-        <div className = "flex flex-col">
-          {currProd.features.map((item)=>{
+        <div className = "flex flex-col justify-content">
+          {currProd.features.map((item, index)=>{
             if (item.value !== null) {
-              return (<div>{item.value} {item.feature}</div>);
+              return (<div className = "m-1" key = {index}>{item.value} {item.feature}</div>);
             } else {
-              return (<div>{item.feature}</div>);
+              return (<div className = "m-1" key = {index}>{item.feature}</div>);
             }
           })}
         </div>
@@ -52,12 +52,14 @@ const ProductDetails = ({currProd}) => {
 
   const renderInfo = () => {
     if (currProd !== null && currProd !== undefined) {
-
-      console.log('***********', currProd)
       return (
-        <div className = "flex flex-row">
-          {renderText()}
+        <div className = "flex flex-col">
+          <div className = "font-extrabold">
+            <br></br>
+            Features:
+          </div>
           {renderFeatures()}
+          {renderText()}
         </div>
       );
     }
@@ -66,7 +68,6 @@ const ProductDetails = ({currProd}) => {
 
   return (
     <div >
-      {console.log('CURR PROD ******************', currProd)}
       {renderInfo()}
     </div>
   );

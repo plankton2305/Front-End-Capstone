@@ -6,8 +6,8 @@ const ImageList = ({photoArr, setPhotoIndex, currPhoto}) => {
 
   let buttIndex = -1;
   const renderList = () => {
-    return photoArr.map((item)=>{
-      return <ImageButton photoUrl = {item} buttIndex = {buttIndex += 1} setFunc = {setPhotoIndex} currPhoto = {currPhoto}/>;
+    return photoArr.map((item, index)=>{
+      return <ImageButton key = {index} photoUrl = {item} buttIndex = {buttIndex += 1} setFunc = {setPhotoIndex} currPhoto = {currPhoto}/>;
     });
   };
 

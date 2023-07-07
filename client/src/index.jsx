@@ -22,8 +22,6 @@ const App = () => {
   useEffect(() => {
     Products.getProducts()
       .then((res) => {
-        console.log('Get PRODUCTS')
-        console.log(res.data)
         setCurrId(res.data[0]?.id || '')
       })
       .catch((err) => { console.log('GET PRODUCTS ERROR: ', err) })
@@ -35,7 +33,7 @@ const App = () => {
         <div>
           <Overview id={currId} setCurrId={setCurrId} />
         </div>
-        <div>
+        <div className = "flex flex-row justify-center">
           <RelatedList productId={currId} setProductId={setCurrId} />
         </div>
         <div>
@@ -54,7 +52,6 @@ const App = () => {
   return (
     <div>
       {condRender()}
-
     </div>
   )
 }

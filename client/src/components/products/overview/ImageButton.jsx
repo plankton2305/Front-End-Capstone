@@ -9,9 +9,9 @@ const ImageButton = ({photoUrl, setFunc, buttIndex, currPhoto}) => {
   };
 
   const renderImg = () => {
-    let styleString = `m-1 w-16 h-16 object-cover cursor-pointer border-black hover:border-b-4 transition-all duration-400 ease-out-in`;
+    let styleString = `m-2 w-24 h-24 object-cover cursor-pointer border-black hover:border-b-[6px] transition-all duration-400 ease-out-in`;
     if (buttIndex === currPhoto) {
-      styleString = `m-1 w-16 h-16 object-cover cursor-pointer border-black hover:border-b-4 border-b-8 transition-all duration-400 ease-out-in`;
+      styleString = `m-2 w-24 h-24 object-cover cursor-pointer border-black hover:border-b-[6px] border-b-[12px] transition-all duration-400 ease-out-in`;
     }
     return <img className = {styleString} src = {photoUrl} onClick = {handleClick}></img>
   };

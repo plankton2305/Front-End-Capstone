@@ -2,9 +2,6 @@ import {useState, useEffect} from "react";
 import StyleButton from './StyleButton.jsx';
 
 const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
-  // console.log('STYLE SELECTOR')
-  // console.log(currStyle);
-  // console.log(styleArray);
   let buttIndex = -1;
 
   const renderSelectors = () => {
@@ -12,7 +9,7 @@ const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
     let trArr = [];
     let tempRow = <tr></tr>;
     for (let i = 0; i < styleArray.length; i++) {
-      let cell = <td><StyleButton
+      let cell = <td key = {i}><StyleButton
         style = {styleArray[i]}
         setCurrStyleIndex = {setCurrStyleIndex}
         buttIndex = {buttIndex += 1}
@@ -21,7 +18,7 @@ const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
       trArr.push(cell);
 
       if (i % 4 === 3 || i === styleArray.length - 1) {
-        tableArr.push(<tr>{trArr}</tr>);
+        tableArr.push(<tr key = {`${i}tr`}>{trArr}</tr>);
         trArr = [];
       }
     }
@@ -35,7 +32,9 @@ const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
       </div>
       <br></br>
       <table>
-        {renderSelectors()}
+        <tbody>
+          {renderSelectors()}
+        </tbody>
       </table>
     </>
   );

@@ -6,17 +6,17 @@ const ProductInfo = ({currProd, style}) => {
     if (style.sale_price !== undefined && style.sale_price !== null) {
       return (
         <div className = "flex flex-row">
-          <div className = 'text-red-500 m-1'>
-            {`$${style.sale_price}`}
-          </div>
           <div className = 'm-1'>
             <s>{`$${currProd.default_price}`}</s>
+          </div>
+          <div className = 'text-red-500 m-1'>
+            {`$${style.sale_price}`}
           </div>
         </div>
       );
     } else {
       return (
-        <div>
+        <div className = 'm-1'>
           {`$${currProd.default_price}`}
         </div>
       );
@@ -25,7 +25,6 @@ const ProductInfo = ({currProd, style}) => {
 
   const renderInfo = () => {
     if (currProd !== null && currProd !== undefined) {
-      console.log('//////////////***********////////////////', style);
       return (
         <div>
           <div>

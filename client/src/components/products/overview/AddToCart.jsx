@@ -3,14 +3,12 @@ import _ from 'underscore';
 import Dropdown from './Dropdown.jsx';
 
 const AddToCart = ({ style, id }) => {
-  // console.log('ADD to CART style: ', style);
 
   const [sizesArray, setSizesArray] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [selectedSize, setSelectedSize] = useState(-1);
   const [selectedQty, setSelectedQty] = useState(-1);
   const [warningClass, setWarningClass] = useState("invisible text-red-500");
-  //itemsArray !== undefined && itemsArray !== null && itemsArray.length > 0
 
   let isValidArray = (sizesArray.length > 0 && quantities.length > 0);
 
@@ -23,12 +21,10 @@ const AddToCart = ({ style, id }) => {
   };
 
   const sizeFunc = (a) => {
-    console.log('SIZE FUNC: ', a);
     setWarningClass("invisible text-red-500");
     setSelectedSize(a);
   };
   const qtyFunc = (a) => {
-    console.log('QTY FUNC: ', a);
     setSelectedQty(a);
   };
 
@@ -36,7 +32,6 @@ const AddToCart = ({ style, id }) => {
     let tempSizeArray = [];
     let tempQtyArray = [];
     for (const value of Object.values(style.skus)) {
-      console.log('Value Value is: ', value);
       if (value.quantity !== null && value.quantity > 0) {
         tempSizeArray.push(value.size);
         tempQtyArray.push(oneToNArr(value.quantity));
@@ -47,15 +42,12 @@ const AddToCart = ({ style, id }) => {
   };
 
   const cartClick = () => {
-    console.log('Cart Click');
     if (selectedSize < 0) {
-      console.log('less than')
       setWarningClass("visible text-red-500")
     }
   };
 
   useEffect(() => {
-    console.log('SYLE CHANGE');
     makeArray();
   }, [style]);
 

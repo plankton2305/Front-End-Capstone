@@ -7,7 +7,6 @@ import ProductInfo from './ProductInfo.jsx';
 import ProductDetails from './ProductDetails.jsx';
 
 const Overview = ({ id, setCurrId }) => {
-  console.log('OVERVIEW');
   const [currStyleIndex, setCurrStyleIndex] = useState(-1);
   const [currProd, setCurrProd] = useState();
   const [productStyles, setProductStyles] = useState([]);
@@ -23,7 +22,6 @@ const Overview = ({ id, setCurrId }) => {
       }
     }
     if (defIndex < 0) {
-      console.log('------------ALL -------------- FALSE ------------')
       return arr;
     } else {
       for (let i = 0; i < arr.length; i++) {
@@ -34,9 +32,6 @@ const Overview = ({ id, setCurrId }) => {
       return a;
     }
   };
-  useEffect(() => {
-    console.log('currSTYLE Index IS: ', currStyleIndex);
-  }, [currStyleIndex]);
 
   useEffect(() => {
     Products.getProductById(id)
@@ -59,22 +54,20 @@ const Overview = ({ id, setCurrId }) => {
   const condRender = () => {
     if (id && currProd && productStyles.length > 0) {
       return (
-        <div className = "flex flex-col">
-          <div className = "flex flex-row justify-center">
-            <div>
-              <ImageGallery style = {productStyles[currStyleIndex]}/>
-            </div>
-            <div className = "m-2 p-2">
-              <ProductInfo currProd = {currProd} style = {productStyles[currStyleIndex]}/>
-              <StyleSelector
-                styleArray={productStyles}
-                currStyle={currStyle}
-                setCurrStyleIndex={setCurrStyleIndex} />
-              <AddToCart style = {currStyle} id = {id}/>
-            </div>
-          </div>
+        <div className = "flex flex-row justify-center">
           <div>
-            <ProductDetails currProd = {currProd}/>
+            <ImageGallery style = {productStyles[currStyleIndex]}/>
+          </div>
+          <div className = "m-2 p-2">
+            <ProductInfo currProd = {currProd} style = {productStyles[currStyleIndex]}/>
+            <StyleSelector
+              styleArray={productStyles}
+              currStyle={currStyle}
+              setCurrStyleIndex={setCurrStyleIndex} />
+            <AddToCart style = {currStyle} id = {id}/>
+            <div>
+              <ProductDetails currProd = {currProd}/>
+            </div>
           </div>
         </div>
       );

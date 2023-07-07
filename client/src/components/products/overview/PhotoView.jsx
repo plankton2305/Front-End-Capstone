@@ -10,13 +10,11 @@ const PhotoView = ({photoArr, photoIndex, setPhotoIndex, setLeftTransform}) => {
   let currImageString = (photoArr[photoIndex] === undefined ? noImage : photoArr[photoIndex].url);
 
   const leftClick = () => {
-    console.log(photoIndex);
     if (photoIndex !== 0) {
       setPhotoIndex(photoIndex - 1);
     }
   };
   const rightClick = ()=>{
-    console.log(photoIndex);
     if (photoIndex !== photoArr.length - 1) {
       setPhotoIndex(photoIndex + 1);
     }
@@ -28,9 +26,9 @@ const PhotoView = ({photoArr, photoIndex, setPhotoIndex, setLeftTransform}) => {
 
   const expandWidth = () => {
     if (expanded) {
-      return '1000px';
+      return '1500px';
     } else {
-      return '700px';
+      return '1050px';
     }
   };
   const zoomObj = () => {
@@ -46,7 +44,6 @@ const PhotoView = ({photoArr, photoIndex, setPhotoIndex, setLeftTransform}) => {
 
   useEffect(() => {
     var elem = document.getElementById("view");
-
 
     const onMouseMove = (event) => {
       let rawX = event.clientX;
@@ -67,15 +64,15 @@ const PhotoView = ({photoArr, photoIndex, setPhotoIndex, setLeftTransform}) => {
   }, []);
 
   return (
-    <div id = "view" className = "m-2 h-[480px] center items-center justify-center bg-white relative z-50 transition-all ease-in-out duration-400 overflow-hidden" style = {{width: `${expandWidth()}`}}>
+    <div id = "view" className = "m-2 h-[720px] center items-center justify-center bg-white relative z-50 transition-all ease-in-out duration-400 overflow-hidden" style = {{width: `${expandWidth()}`}}>
       <img id="myImg" className="h-full mx-auto object-contain transition-transform ease-in-out duration-400"
         src = {currImageString} onClick = {imageClick} style = {zoomObj()}></img>
       <img src = 'https://cdn4.iconfinder.com/data/icons/geomicons/32/672373-chevron-left-512.png'
-        className = "w-10 h-10 absolute top-[50%] -translate-x-0 translate-y-[-50%] left-1 cursor-pointer p-2
+        className = "w-16 h-16 absolute top-[50%] -translate-x-0 translate-y-[-50%] left-2 cursor-pointer p-2
         border-black bg-white bg-opacity-50 hover:border-4 transition-all hover:bg-opacity-75"
         onClick = {leftClick} style = {{}}></img>
       <img src = 'https://cdn4.iconfinder.com/data/icons/geomicons/32/672374-chevron-right-512.png'
-        className = "w-10 h-10 absolute top-[50%] -translate-x-0 translate-y-[-50%] right-1 cursor-pointer p-2
+        className = "w-16 h-16 absolute top-[50%] -translate-x-0 translate-y-[-50%] right-2 cursor-pointer p-2
         border-black bg-white bg-opacity-50 hover:border-4 transition-all hover:bg-opacity-75"
         onClick = {rightClick}></img>
     </div>
