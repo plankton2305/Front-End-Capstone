@@ -11,4 +11,3 @@ const GraphBar = ({shadedVal}) => {
 
 export default GraphBar;
 
-// bg-gradient-to-r from-indigo-500 to-blue-500

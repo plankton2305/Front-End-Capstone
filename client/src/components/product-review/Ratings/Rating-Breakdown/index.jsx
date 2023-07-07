@@ -13,11 +13,9 @@ const getPercentage = (ratings = {}) => {
 
   for (const key in ratings) {
     const percentage = Math.round((ratings[key] / sum) * 100);
-    console.log(`PERCENTAGE::::: ${percentage}\nRATING:::::${ratings[key]}`)
     percentages[key] = `${percentage}%`;
   }
 
-  console.table(percentages);
   return percentages;
 }
 
