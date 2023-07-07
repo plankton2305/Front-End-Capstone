@@ -1,7 +1,7 @@
 
 const ReviewBody = ({ reviewBody }) => {
   return (
-    <div>
+    <div className="mb-[12px]">
       <p>{reviewBody}</p>
     </div>
   )

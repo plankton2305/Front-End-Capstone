@@ -19,14 +19,11 @@ const SearchBar = () => {
           const data = {
 
           }
-
-          // create post
-          Reviews.addReview()
         }}
       >
-        Post
+        Search
       </button>
-    </div>
+    </div> | {date}
   );
 }
 

@@ -61,14 +61,12 @@ const StarRating = ({ reviewMeta }) => {
 
   return (
     <div className="Star-Rating">
-      <p>
-        {/* Rating Value Goes Here (Given from API Call)*/}
-        {/* Example Value */}
-        {averageRating}
-      </p>
       <div className='flex row'>
         {/* Render Stars Here (Checked or Unchecked based on API Call)*/}
         {renderStars(averageRating)}
+        <p className="ml-2">
+          {averageRating} stars
+        </p>
       </div>
     </div>
   )

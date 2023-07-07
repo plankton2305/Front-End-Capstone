@@ -2,7 +2,7 @@
 const Summary = ({ summary }) => {
   return (
     <div>
-      <h4 className="font-bold">{summary}</h4>
+      <h4 className="font-bold mb-[6px]">{summary}</h4>
     </div>
   )
 }

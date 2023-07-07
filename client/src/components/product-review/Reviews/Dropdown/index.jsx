@@ -1,10 +1,10 @@
 
 const Dropdown = () => {
   return (
-    <div>
-      <p>DropDown::::</p>
+    <div className="mb-[16px]">
     </div>
   )
 }
+
 
 export default Dropdown;
