@@ -30,9 +30,9 @@ const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved })
 
   return (
     <React.Fragment>
-      <div className="carousel-item ml-5">
-        <Card className="mt-6 w-96  overflow-hidden">
-          <CardHeader color="blue-gray" className="h-60 mt-5">
+      <div className="carousel-item ml-5 mb-3">
+        <Card className="mt-3 w-96  overflow-hidden">
+          <CardHeader color="blue-gray" className="h-60 mt-3">
             {product.styles && product.styles.photos && product.styles.photos[0].url ? (
               <CardImgSlider product={product} selectNewProduct={selectNewProduct}/>
             ) : (
@@ -62,7 +62,7 @@ const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved })
             </div>
           </CardHeader>
           <CardBody>
-            <span className="badge opacity-80">{product.product.category}</span>
+            <span className="badge bg-[#455f68] opacity-90 text-white">{product.product.category}</span>
             <Typography variant="h5" color="blue-gray" className="mb-2" onClick={selectNewProduct}>
               {product.product.name}
             </Typography>
