@@ -1,5 +1,28 @@
 import { useState, useEffect } from 'react';
 
+export const renderStars = (averageRating) => {
+  //const averageRating = Math.round(calculateAverage(reviewMeta.ratings) * 10) / 10;
+
+  const fullStars = Math.floor(averageRating);
+  const halfStar = averageRating - fullStars >= 0.5 ? true: false;
+  const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+  let stars = [];
+
+  for (let i = 0; i < fullStars; i++) {
+    stars.push(<span className="star-full">F-</span>);
+  }
+
+  if (halfStar) {
+    stars.push(<span className="star-half">H-</span>);
+  }
+
+  for (let i = 0; i < emptyStars; i++) {
+    stars.push(<span className="star-empty">E-</span>);
+  }
+
+  return stars;
+}
+
 const StarRating = ({ reviewMeta }) => {
   //const [starVal, setStarVal] = useState(3.9);
   //const [averageRating, setAverageRating] = useState(0);
@@ -27,34 +50,8 @@ const StarRating = ({ reviewMeta }) => {
       numOfRatings += Number(ratings[val]);
     }
 
-    console.log(numOfRatings)
     return numOfRatings ? ( sum / numOfRatings ) : 0;
   }
-
-
-  const renderStars = (averageRating) => {
-    //const averageRating = Math.round(calculateAverage(reviewMeta.ratings) * 10) / 10;
-
-    const fullStars = Math.floor(averageRating);
-    const halfStar = averageRating - fullStars >= 0.5 ? true: false;
-    const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
-    let stars = [];
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<span className="star-full">F-</span>);
-    }
-
-    if (halfStar) {
-      stars.push(<span className="star-half">H-</span>);
-    }
-
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<span className="star-empty">E-</span>);
-    }
-
-    return stars;
-  }
-
 
   const averageRating = Math.round(calculateAverage(reviewMeta.ratings) * 10) / 10;
 
@@ -74,6 +71,7 @@ const StarRating = ({ reviewMeta }) => {
 }
 
 export default StarRating;
+//export default renderStars;
 
 
 // <span className="star-full">V</span>
