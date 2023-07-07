@@ -5,11 +5,13 @@ import AddToCart from './AddToCart.jsx';
 import ImageGallery from './ImageGallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import ProductDetails from './ProductDetails.jsx';
+import Reviews from '../../../api/reviews.js';
 
 const Overview = ({ id, setCurrId, setProduct }) => {
   const [currStyleIndex, setCurrStyleIndex] = useState(-1);
   const [currProd, setCurrProd] = useState();
   const [productStyles, setProductStyles] = useState([]);
+  const [productRating, setProductRating] = useState([]);
 
   const productStylesSetup = (arr) => {
     let a = [];
@@ -33,6 +35,23 @@ const Overview = ({ id, setCurrId, setProduct }) => {
     }
   };
 
+  const averageRating = (data) => {
+    const calculateAverage = (ratings) => {
+      let sum = 0;
+      let numOfRatings = 0;
+      for (const val in ratings) {
+        sum += Number(val) * ratings[val];
+        numOfRatings += Number(ratings[val]);
+      }
+
+      return numOfRatings ? sum / numOfRatings : 0;
+    };
+
+    const averageRatings =
+      Math.round(calculateAverage(data.ratings) * 10) / 10;
+    return averageRatings;
+  };
+
   useEffect(() => {
     Products.getProductById(id)
       .then((res) => {
@@ -45,6 +64,13 @@ const Overview = ({ id, setCurrId, setProduct }) => {
         setProductStyles(productStylesSetup(res.data.results));
       })
       .catch((err) => { console.log('getStyles ERROR: ', err); });
+
+    Reviews.getMetaData(id)
+      .then((res) => {
+        setProductRating(averageRating(res.data));
+      })
+      .catch((err) => { console.log('GET RATINGS ERROR FOR VICTORINO', err); });
+
     setCurrStyleIndex(0);
   }, [id]);
 
@@ -60,7 +86,7 @@ const Overview = ({ id, setCurrId, setProduct }) => {
             <ImageGallery style = {productStyles[currStyleIndex]}/>
           </div>
           <div className = "m-2 p-2">
-            <ProductInfo currProd = {currProd} style = {productStyles[currStyleIndex]}/>
+            <ProductInfo currProd = {currProd} style = {productStyles[currStyleIndex]} productRating={productRating}/>
             <StyleSelector
               styleArray={productStyles}
               currStyle={currStyle}

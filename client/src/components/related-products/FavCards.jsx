@@ -11,12 +11,11 @@ import Compare from './Compare.jsx';
 import axios from 'axios';
 import { saveToCloset, getFromCloset, removeFromCloset } from './accessYourCloset.js';
 import CardImgSlider from './CardImgSlider.jsx';
+import {renderStars} from '.././product-review/Ratings/Star-Rating.jsx';
 
 const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
-  // const unfill = "btn btn-circle";
-  // const fill = "btn btn-circle btn-error";
 
-  // console.log('FAV PRODUCT', favProduct);
+  console.log(favProduct);
 
   const removeFav = () => {
     removeFromCloset(favProduct.product.id);
@@ -66,9 +65,9 @@ const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
                 <span className='original-price'>${favProduct.product.default_price}</span>
               )}
             </Typography>
-            <Typography>
-              ☆☆☆☆☆
-            </Typography>
+            <div className='flex row'>
+              {renderStars(favProduct.stars)}
+            </div>
           </CardBody>
         </Card>
       </div>

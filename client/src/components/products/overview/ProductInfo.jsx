@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
+import {renderStars} from '../../product-review/Ratings/Star-Rating.jsx';
 
-const ProductInfo = ({currProd, style}) => {
+const ProductInfo = ({currProd, style, productRating}) => {
 
   const renderCost = () => {
     if (style.sale_price !== undefined && style.sale_price !== null) {
@@ -30,6 +31,9 @@ const ProductInfo = ({currProd, style}) => {
           <span className="badge bg-[#455f68] opacity-90 text-white text-lg font-sans tracking-tighter font-extralight font-sky-500">
             {currProd.category}
           </span>
+          <div className='flex row'>
+            {renderStars(productRating)}
+          </div>
           <div className = "text-3xl font-sans font-semibold">
             {currProd.name}
           </div>

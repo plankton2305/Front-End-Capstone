@@ -9,16 +9,20 @@ export const renderStars = (averageRating) => {
   let stars = [];
 
   for (let i = 0; i < fullStars; i++) {
-    stars.push(<span className="star-full">F-</span>);
+    // stars.push(<span className="star-full">F-</span>);
+    stars.push(<img className="star-full" src='filled-star.png'/>);
   }
 
   if (halfStar) {
-    stars.push(<span className="star-half">H-</span>);
+    // stars.push(<span className="star-half">H-</span>);
+    stars.push(<img className="star-half" src='half-empty-star.png'/>);
   }
 
   for (let i = 0; i < emptyStars; i++) {
-    stars.push(<span className="star-empty">E-</span>);
+    // stars.push(<span className="star-empty">E-</span>);
+    stars.push(<img className="star-empty" src='empty-star.png'/>);
   }
+
 
   return stars;
 }
@@ -62,7 +66,7 @@ const StarRating = ({ reviewMeta }) => {
         {/* Example Value */}
         {averageRating}
       </p>
-      <div>
+      <div className='flex row'>
         {/* Render Stars Here (Checked or Unchecked based on API Call)*/}
         {renderStars(averageRating)}
       </div>

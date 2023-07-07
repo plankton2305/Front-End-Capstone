@@ -11,6 +11,7 @@ import Compare from './Compare.jsx';
 import axios from 'axios';
 import { saveToCloset, getFromCloset, removeFromCloset } from './accessYourCloset.js';
 import CardImgSlider from './CardImgSlider.jsx';
+import {renderStars} from '.././product-review/Ratings/Star-Rating.jsx';
 
 const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved }) => {
   const [show, setShow] = useState(null);
@@ -76,9 +77,9 @@ const RelatedCards = ({ product, currentDetails, setProductId, setUpdateSaved })
                 <span className='original-price'>${product.product.default_price}</span>
               )}
             </Typography>
-            <Typography>
-              ☆☆☆☆☆
-            </Typography>
+            <div className='flex row'>
+              {renderStars(product.stars)}
+            </div>
           </CardBody>
         </Card>
       </div>
