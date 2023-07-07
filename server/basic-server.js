@@ -6,6 +6,9 @@ app.use(express.json()); // parse party
 
 app.use(express.static(path.join(__dirname, '../client/dist'))); // static server
 
+app.use('/', (req, res) => {
+  app.render('index.html');
+});
 
 app.listen(3000);
 console.log('Server listening on port 3000');
