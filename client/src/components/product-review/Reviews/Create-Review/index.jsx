@@ -8,7 +8,7 @@ const CreateReview = ({ productId }) => {
 
   return (
     <div>
-      <label for="review-form-modal" className="btn">Create Review</label>
+      <label for="review-form-modal" className="btn border-gray-300 shadow">Create Review</label>
       <ReviewForm productId={productId} />
     </div>
   );

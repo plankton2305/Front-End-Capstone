@@ -35,7 +35,7 @@ const Ratings = ({ productId }) => {
   }, []);
 
   return (
-    <div className="inline-block flex-initial mx-[20px]">
+    <div className="inline-block flex-initial">
       {/* Entire left sidebar should be floated to the left and kept fixed relative to rating list */}
       <div>
         <div>

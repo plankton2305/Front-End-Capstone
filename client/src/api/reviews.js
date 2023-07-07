@@ -18,8 +18,9 @@ class Reviews extends Api {
     return this.post(`/`, data);
   }
 
-  markHelpful() {
+  markHelpful(reviewId) {
     // mark helpful
+    return this.put(`/${reviewId}/helpful`);
   }
 
   report() {

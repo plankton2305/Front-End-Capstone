@@ -7,9 +7,16 @@ import CreateReview from './Create-Review/index.jsx';
 
 const ReviewsList = ({ productId }) => {
   const [reviewList, setReviewList] = useState([]);
+  const [sortBy, setSortBy] = useState('relevant');
+
+  const sortOptions = {
+    'newest': 'Newest Reviews',
+    'helpful': 'Most Helpful Reviews',
+    'relevant': 'Most Relevant Reviews'
+  }
 
   useEffect(() => {
-    Reviews.listReviews(productId)
+    Reviews.listReviews(productId, sortBy)
       .then((response) => {
         // console.log(response.data);
         setReviewList(response.data.results);
@@ -20,11 +27,11 @@ const ReviewsList = ({ productId }) => {
   }, [])
 
   return (
-    <div className="flex-1">
-      <h3>
-        REVIEWS
+    <div className="flex-1 ml-[128px]">
+      <h3 className="text-xl font-sans font-semibold my-[16px]">
+        {sortOptions[sortBy]}
       </h3>
-      <Dropdown />
+      <Dropdown sortBy={sortBy} setSortBy={setSortBy}/>
       <div>
         {
           reviewList.map((review) => {

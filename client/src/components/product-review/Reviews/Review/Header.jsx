@@ -9,10 +9,13 @@ const formatDate = (dateString) => {
 
 const Header = ({reviewerName, rating, date}) => {
   return (
-    <div>
-      <span className="mx-[10px]">{renderStars(rating)}</span>
-      <span className="mx-[10px]">{reviewerName}</span>
-      <span className="mx-[10px]">{formatDate(date)}</span>
+    <div className="flex justify-between w-full">
+      <span className="flex flex-row">{renderStars(rating)}</span>
+      <div className="flex flex-row">
+        <span className="mx-[10px]">{reviewerName}</span>
+        <span>|</span>
+        <span className="mx-[10px]">{formatDate(date)}</span>
+      </div>
     </div>
   );
 };
