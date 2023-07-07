@@ -36,7 +36,7 @@ const App = () => {
           </div>
           <RelatedList productId={currId} setProductId={setCurrId} />
           <QuestionsAndAnswers productId={currId} />
-          <Review productId={currId} />
+          <Review product={product} />
         </div>
       )
     } else {

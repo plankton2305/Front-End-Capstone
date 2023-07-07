@@ -17,6 +17,10 @@ class Api {
   post(path, data) {
     return axios.post(`${this.base}${path}`, data, { headers: this.headers });
   }
+
+  put(path, data = {}) {
+    return axios.put(`${this.base}${path}`, data, { headers: this.headers });
+  }
 }
 
 export default Api;
