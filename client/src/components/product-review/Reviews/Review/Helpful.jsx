@@ -12,6 +12,8 @@ const Helpful = ({ reviewId, helpfulness }) => {
           // make call to api
           Reviews.markHelpful(reviewId)
             .then((response) => {
+              console.log(helpfulVal);
+              console.log(response)
               setHelpfulVal(helpfulVal + 1);
             })
             .catch((err) => {
@@ -21,7 +23,7 @@ const Helpful = ({ reviewId, helpfulness }) => {
       >
         Helpful?
         <span className="font-normal">
-          ({helpfulness})
+          ({helpfulVal})
         </span>
       </button>
     </div>

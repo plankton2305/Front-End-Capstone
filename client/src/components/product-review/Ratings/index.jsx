@@ -43,11 +43,9 @@ const Ratings = ({ productId }) => {
         </div>
         <div>
           {/* Bar Graph Representation of Ratings Goes Here */}
-          <p>Bar Graph Goes Here</p>
           <RatingBreakdown reviewMeta={reviewMeta} />
         </div>
         <div>
-          <p>Fit Ratings Go Here</p>
           <FitBreakdown reviewMeta={reviewMeta} />
           {/* Fit Ratings */}
         </div>
