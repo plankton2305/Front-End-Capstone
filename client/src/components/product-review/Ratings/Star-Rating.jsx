@@ -73,9 +73,3 @@ const StarRating = ({ reviewMeta }) => {
 export default StarRating;
 //export default renderStars;
 
-
-// <span className="star-full">V</span>
-// <span className="star-full">V</span>
-// <span className="star-full">V</span>
-// <span className="star-half">V</span>
-// <span className="star-empty">V</span>

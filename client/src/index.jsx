@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
 //Styling Imports
@@ -16,40 +16,52 @@ import RelatedList from './components/related-products/RelatedList.jsx';
 import QuestionsAndAnswers from './components/qa/index.jsx';
 
 const App = () => {
+  const [product, setProduct] = useState();
+  const [currId, setCurrId] = useState();
 
-   const [currId, setCurrId] = useState();
-
-   useEffect(()=>{
-     Products.getProducts()
-       .then((res)=>{
-         console.log('Get PRODUCTS')
-         console.log(res.data)
-         setCurrId(res.data[0]?.id || '')
-       })
-       .catch((err)=>{console.log('GET PRODUCTS ERROR: ', err)})
-   },[])
+  useEffect(() => {
+    Products.getProducts()
+      .then((res) => {
+        setCurrId(res.data[0]?.id || '')
+        setProduct(res.data[0])
+      })
+      .catch((err) => { console.log('GET PRODUCTS ERROR: ', err) })
+  }, []);
 
   const condRender = () => {
     if (currId) {
-      return (<div>
-        <Overview id = {currId} setCurrId = {setCurrId} />
-        <RelatedList productId={currId} setProductId={setCurrId} />
-        <QuestionsAndAnswers productId={currId} />
-        <Review productId={currId} />
+      return (
+        <div>
+          <div className = "flex flex-col justify-content">
+            <Overview id={currId} setCurrId={setCurrId} setProduct={setProduct}/>
+          </div>
+          <RelatedList productId={currId} setProductId={setCurrId} />
+          <div className="m-10 m-h-[60vh]">
+            <QuestionsAndAnswers product={product} />
+          </div>
+          <Review productId={currId} />
         </div>
-        )
+      )
     } else {
       return (<div></div>)
     }
-  }
+  };
 
   return (
-    <div>
+    <>
+    <header className="bg-[#c5d8d6] w-full h-[100px]">
+      <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-full">
+          <img src="logo.png" className="h-full"/>
+        </div>
+      </div>
+    </header>
+    <div className="bg-[#f1f3f2]">
       {condRender()}
-
     </div>
-  )
-}
+    </>
+  );
+};
 
 createRoot(document.getElementById('app')).render(
   <ThemeProvider>

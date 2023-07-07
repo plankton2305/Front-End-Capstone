@@ -11,7 +11,7 @@ const ReviewsList = ({ productId }) => {
   useEffect(() => {
     Reviews.listReviews(productId)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setReviewList(response.data.results);
       })
       .catch((err) => {
