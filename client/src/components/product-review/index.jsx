@@ -9,7 +9,7 @@ const Review = ({ productId }) => {
     // Something For Reviews
     <section className="m-10" id="ratings-and-reviews">
       <h2 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-inherit mt-5 mb-5">Ratings & Reviews</h2>
-      <div className="mx-auto py-16 w-[66%] flex">
+      <div className="mr-auto pb-16 w-[66%] flex">
         <Ratings productId={productId} />
         <ReviewsList productId={productId} />
       </div>
