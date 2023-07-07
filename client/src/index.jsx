@@ -33,7 +33,7 @@ const App = () => {
       return (
         <div>
           <div className = "flex flex-col justify-content">
-            <Overview id={currId} setCurrId={setCurrId} />
+            <Overview id={currId} setCurrId={setCurrId} setProduct={setProduct}/>
           </div>
           <RelatedList productId={currId} setProductId={setCurrId} />
           <QuestionsAndAnswers product={product} />
@@ -46,9 +46,18 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
+    <header className="bg-[#c5d8d6] w-full h-[100px]">
+      <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-full">
+          <img src="logo.png" className="h-full"/>
+        </div>
+      </div>
+    </header>
+    <div className="bg-[#f1f3f2]">
       {condRender()}
     </div>
+    </>
   );
 };
 
