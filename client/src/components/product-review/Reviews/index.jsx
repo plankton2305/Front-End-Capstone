@@ -3,6 +3,7 @@ import Reviews from '../../../api/reviews.js';
 import Review from './Review/index.jsx';
 import Dropdown from './Dropdown/index.jsx';
 import CreateReview from './Create-Review/index.jsx';
+import LoadMore from './Load-More.jsx';
 
 
 const ReviewsList = ({ productId }) => {
@@ -39,7 +40,10 @@ const ReviewsList = ({ productId }) => {
           })
         }
       </div>
-      <CreateReview productId={productId}/>
+      <div className="flex">
+        <LoadMore productId={productId} reviewList={reviewList} setReviewList={setReviewList}/>
+        <CreateReview productId={productId}/>
+      </div>
     </div>
   );
 }
