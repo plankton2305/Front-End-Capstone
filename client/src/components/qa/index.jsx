@@ -16,6 +16,7 @@ const QuestionsAndAnswers = ({ product }) => {
   const productName = product.name || '';
 
   useEffect(() => {
+    console.log('product', product);
     if (productId) {
       const api = Questions;
       api.getQuestions(productId)
@@ -24,7 +25,7 @@ const QuestionsAndAnswers = ({ product }) => {
         })
         .catch((err) => console.log('errr', err));
     }
-  }, []);
+  }, [product]);
 
   return (
     <>

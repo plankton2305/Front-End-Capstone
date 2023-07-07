@@ -16,13 +16,14 @@ import RelatedList from './components/related-products/RelatedList.jsx';
 import QuestionsAndAnswers from './components/qa/index.jsx';
 
 const App = () => {
-
+  const [product, setProduct] = useState();
   const [currId, setCurrId] = useState();
 
   useEffect(() => {
     Products.getProducts()
       .then((res) => {
         setCurrId(res.data[0]?.id || '')
+        setProduct(res.data[0])
       })
       .catch((err) => { console.log('GET PRODUCTS ERROR: ', err) })
   }, []);
@@ -35,8 +36,8 @@ const App = () => {
             <Overview id={currId} setCurrId={setCurrId} />
           </div>
           <RelatedList productId={currId} setProductId={setCurrId} />
-          <QuestionsAndAnswers productId={currId} />
-          <Review product={product} />
+          <QuestionsAndAnswers product={product} />
+          <Review productId={currId} />
         </div>
       )
     } else {
