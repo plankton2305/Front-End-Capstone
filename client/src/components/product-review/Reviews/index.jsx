@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
-import Reviews from '../../api/reviews.js';
+import Reviews from '../../../api/reviews.js';
+import Review from './Review/index.jsx';
+import Dropdown from './Dropdown/index.jsx';
+import CreateReview from './Create-Review/index.jsx';
+
 
 const ReviewsList = ({ productId }) => {
   const [reviewList, setReviewList] = useState([]);
@@ -16,17 +20,19 @@ const ReviewsList = ({ productId }) => {
   }, [])
 
   return (
-    <div>
+    <div className="flex-1">
       <h3>
         REVIEWS
       </h3>
+      <Dropdown />
       <div>
         {
           reviewList.map((review) => {
-            return <p>{review.body}</p>;
+            return <Review review={review}/>
           })
         }
       </div>
+      <CreateReview productId={productId}/>
     </div>
   );
 }

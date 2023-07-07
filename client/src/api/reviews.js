@@ -6,7 +6,7 @@ class Reviews extends Api {
     super('reviews');
   }
 
-  listReviews(id, count = 5, page = 1, sort) {
+  listReviews(id, sort = 'relevant', count = 5, page = 1) {
     return this.get(`/?page=${page}&count=${count}&sort=${sort}&product_id=${id}`);
   }
 
@@ -15,7 +15,7 @@ class Reviews extends Api {
   }
 
   addReview(data = {}) {
-    return this.post(`/reviews`, data);
+    return this.post(`/`, data);
   }
 
   markHelpful() {
