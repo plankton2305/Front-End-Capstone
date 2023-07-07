@@ -1,6 +1,8 @@
 import StarRating from './Star-Rating.jsx';
 import { useState, useEffect } from 'react';
-import Reviews from '../../api/reviews.js';
+import Reviews from '../../../api/reviews.js';
+import RatingBreakdown from './Rating-Breakdown/index.jsx';
+import FitBreakdown from './Fit-Breakdown/index.jsx';
 //const Reviews = require('../../api/reviews.js');
 
 const Ratings = ({ productId }) => {
@@ -24,31 +26,35 @@ const Ratings = ({ productId }) => {
     //get review metadata
     Reviews.getMetaData(productId)
       .then((response) => {
-        // console.log(response.data);
+        console.log(`REVIEW META::::\n${JSON.stringify(response.data,null,2)}`);
         setReviewMeta(response.data)
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       })
   }, []);
 
   return (
-    <div>
+    <div className="inline-block flex-initial mx-[20px]">
       {/* Entire left sidebar should be floated to the left and kept fixed relative to rating list */}
       <div>
-        {/* Head of Widget */}
-        <h3>
-          RATINGS & REVIEWS
-        </h3>
-        <StarRating reviewMeta={reviewMeta}/>
-      </div>
-      <div>
-        {/* Bar Graph Representation of Ratings Goes Here */}
-        <p>Bar Graph Goes Here</p>
-      </div>
-      <div>
-        <p>Fit Ratings Go Here</p>
-        {/* Fit Ratings */}
+        <div>
+          {/* Head of Widget */}
+          <h3>
+            RATINGS & REVIEWS
+          </h3>
+          <StarRating reviewMeta={reviewMeta}/>
+        </div>
+        <div>
+          {/* Bar Graph Representation of Ratings Goes Here */}
+          <p>Bar Graph Goes Here</p>
+          <RatingBreakdown reviewMeta={reviewMeta} />
+        </div>
+        <div>
+          <p>Fit Ratings Go Here</p>
+          <FitBreakdown reviewMeta={reviewMeta} />
+          {/* Fit Ratings */}
+        </div>
       </div>
     </div>
   );
