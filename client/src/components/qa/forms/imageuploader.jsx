@@ -23,15 +23,15 @@ const ImageUploader = ({setPhotos, photos}) => {
 
   const styleBorder = 'border-2 border-dotted border-current rounded';
   const styleGrid = 'grid content-center justify-center text-center';
-  const style = `h-20 w-20 ${styleBorder} ${styleGrid}`;
+  const style = `h-[150px] w-[150px] ${styleBorder} ${styleGrid}`;
 
   return (
-    <div className="flex flex-nowrap">
+    <div className="flex flex-wrap justify-normal">
       {
         photos.map((url, i) => {
           return (
             <div key={i} className={style}>
-              <img className="max-h-15" src={url} alt="uploaded image"/>
+              <img className="max-h-[150px] max-w-[150px] py-2" src={url} alt="uploaded image"/>
             </div>
           );
         })

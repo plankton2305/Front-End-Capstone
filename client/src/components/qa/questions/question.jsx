@@ -4,11 +4,11 @@ import Questions from '../../../api/questions.js';
 import AddAnswer from './addanswer.jsx';
 import AnswerList from '../answers/answer-list.jsx';
 
-const Question = ({ question, productName }) => {
+const Question = ({ question, productName, setRerender }) => {
   const [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness);
 
   //!! convert answers to array
-  question.answers = Object.entries(question.answers);
+  question.answers = Object.values(question.answers);
 
   const helpfulYesClickHandler = (e) => {
     setHelpfulCount(helpfulCount + 1);
@@ -24,7 +24,7 @@ const Question = ({ question, productName }) => {
         <div>
           <span className="pr-2">Helpful?</span>
           <button className="pr-2" onClick={(e) => helpfulYesClickHandler(e) }><span className="underline">Yes</span> ({ helpfulCount })</button> |
-          <AddAnswer product={'hello'} question={'world'}/>
+          <AddAnswer id={question.question_id} product={productName} question={question.question_body} setRerender={setRerender}/>
         </div>
       </div>
 

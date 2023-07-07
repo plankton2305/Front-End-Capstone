@@ -19,7 +19,7 @@ const filterQuestions = (questions, filter) => {
   });
 };
 
-const QuestionList = ({ filter, questions, productName }) => {
+const QuestionList = ({ filter, questions, productName, productId, setRerender }) => {
   const [renderQuestions, setRenderQuestions] = useState([]);
   const [limitQuestions, setlimitQuestions] = useState(4);
   const [questionCount, setQuestionCount] = useState(0);
@@ -44,20 +44,19 @@ const QuestionList = ({ filter, questions, productName }) => {
         renderQuestions.map((question, index) => {
           return (
             <div className="mb-4" key={ index }>
-              <Question question={ question } productName={productName} />
+              <Question question={ question } productName={productName} setRerender={setRerender} />
             </div>
           );
         })
       }
-      {/* { limitedQuestions.length === 0 && <button>Submit a new question</button> } */}
       {
         renderQuestions.length < questionCount &&
         <button
-          className="btn bg-[transparent]"
+          className="btn bg-[transparent] mr-4"
           onClick={() => { setlimitQuestions(limitQuestions + 5); }}
         >More Answered Questions</button>
       }
-      <AddQuestion />
+      <AddQuestion productName={productName} productId={productId} setRerender={setRerender}/>
     </>
   );
 };

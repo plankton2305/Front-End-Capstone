@@ -36,7 +36,7 @@ const App = () => {
             <Overview id={currId} setCurrId={setCurrId} setProduct={setProduct}/>
           </div>
           <RelatedList productId={currId} setProductId={setCurrId} />
-          <div className="mt-6">
+          <div className="m-10 m-h-[60vh]">
             <QuestionsAndAnswers product={product} />
           </div>
           <Review productId={currId} />
