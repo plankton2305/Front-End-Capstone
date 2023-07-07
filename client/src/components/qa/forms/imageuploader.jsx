@@ -1,8 +1,7 @@
 /* eslint-disable camelcase */
 import {useState, useEffect} from 'react';
 
-const ImageUploader = () => {
-  const [imageUrls, setImageUrls] = useState([]);
+const ImageUploader = ({setPhotos, photos}) => {
   const [imageLimit, setImageLimit] = useState(5);
 
   const clickHandler = (e) => {
@@ -16,7 +15,7 @@ const ImageUploader = () => {
       if (error) {
         console.log(error);
       } else if (result && result.event === "success") {
-        setImageUrls([...imageUrls, result.info.url]);
+        setPhotos([...photos, result.info.url]);
         setImageLimit(imageLimit - 1);
       }
     });
@@ -29,7 +28,7 @@ const ImageUploader = () => {
   return (
     <div className="flex flex-nowrap">
       {
-        imageUrls.map((url, i) => {
+        photos.map((url, i) => {
           return (
             <div key={i} className={style}>
               <img className="max-h-15" src={url} alt="uploaded image"/>

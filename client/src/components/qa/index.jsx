@@ -5,13 +5,15 @@ import Questions from '../../api/questions.js';
 
 // Components
 import QuestionSearch from './search.jsx';
-import QuestionList from './list.jsx';
+import QuestionList from './questions/question-list.jsx';
 import AddQuestion from './addquestion.jsx';
 
-const QuestionsAndAnswers = ({ productId, seller, product }) => {
+const QuestionsAndAnswers = ({ product }) => {
   const [questions, setQuestions] = useState([]);
   const [filter, setFilter] = useState('');
-  console.log('QuestionsAndAnswers', JSON.stringify(product));
+
+  const productId = product.id || null;
+  const productName = product.name || '';
 
   useEffect(() => {
     if (productId) {
@@ -26,12 +28,9 @@ const QuestionsAndAnswers = ({ productId, seller, product }) => {
 
   return (
     <>
-      <h2>QUESTIONS & ANSWERS</h2>
+      <h2 className="mb-4">QUESTIONS & ANSWERS</h2>
       <QuestionSearch setFilter={ setFilter } />
-      {/* <div style={{maxHeight: '20vh', overflowY: 'scroll', overflow: 'clip'}}> */}
-      <QuestionList filter={ filter } questions={ questions } seller={ seller } product={product}/>
-      {/* </div> */}
-      {/* <AddQuestion /> */}
+      <QuestionList filter={ filter } questions={ questions } productName={productName} />
     </>
   );
 };

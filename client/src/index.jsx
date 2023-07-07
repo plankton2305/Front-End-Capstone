@@ -17,7 +17,6 @@ import QuestionsAndAnswers from './components/qa/index.jsx';
 
 const App = () => {
    const [currId, setCurrId] = useState();
-   const [productSeller, setProductSeller] = useState('');
    const [product, setProduct] = useState({});
 
    useEffect(()=>{
@@ -25,7 +24,6 @@ const App = () => {
        .then((res)=>{
         //  console.log('Get PRODUCTS', res.data)
          setCurrId(res.data[0]?.id || '')
-         setProductSeller(res.data[0]?.name || '')
          setProduct(res.data[0])
        })
        .catch((err)=>{console.log('GET PRODUCTS ERROR: ', err)})
@@ -36,7 +34,7 @@ const App = () => {
       return (<div>
         {/* <Overview id = {currId} setCurrId = {setCurrId} /> */}
         {/* <RelatedList productId={currId} setProductId={setCurrId} /> */}
-        <QuestionsAndAnswers productId={currId} seller={productSeller} product={ product} />
+        <QuestionsAndAnswers product={product} />
         {/* <Review productId={currId} /> */}
         </div>
         )

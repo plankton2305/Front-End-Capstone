@@ -6,7 +6,7 @@ const QuestionSearch = ({ setFilter }) => {
   };
 
   return (
-    <div className="border border-black text-xl relative">
+    <div className="border border-black text-xl relative mb-4">
       <input
         className="px-6 py-4 w-full h-full bg-transparent border-none"
         onChange={ onChangeHandler }

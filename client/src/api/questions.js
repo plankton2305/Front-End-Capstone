@@ -10,7 +10,7 @@ class Questions {
     return this.api.get(`/questions?product_id=${productId}&count=${count}&page=${page}`);
   }
 
-  post(productId, data) {
+  postQuestion(productId, data) {
     return this.api.post(`/questions?product_id=${productId}`, data);
   }
 
