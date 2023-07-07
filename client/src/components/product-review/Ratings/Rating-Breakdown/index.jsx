@@ -46,7 +46,7 @@ const RatingBreakdown = ({ reviewMeta }) => {
 
   return (
     // Display Rating Display by number of Ratings
-    <div>
+    <div className="pb-3 mb-3 border-b border-gray-400">
       <table className="rating-breakdown-table">
         {
           renderRating(reviewMeta.ratings)

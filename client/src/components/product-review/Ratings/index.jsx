@@ -35,23 +35,17 @@ const Ratings = ({ productId }) => {
   }, []);
 
   return (
-    <div className="inline-block flex-initial mx-[20px]">
+    <div className="inline-block flex-initial">
       {/* Entire left sidebar should be floated to the left and kept fixed relative to rating list */}
       <div>
         <div>
-          {/* Head of Widget */}
-          <h3>
-            RATINGS & REVIEWS
-          </h3>
           <StarRating reviewMeta={reviewMeta}/>
         </div>
         <div>
           {/* Bar Graph Representation of Ratings Goes Here */}
-          <p>Bar Graph Goes Here</p>
           <RatingBreakdown reviewMeta={reviewMeta} />
         </div>
         <div>
-          <p>Fit Ratings Go Here</p>
           <FitBreakdown reviewMeta={reviewMeta} />
           {/* Fit Ratings */}
         </div>
