@@ -39,10 +39,6 @@ const Ratings = ({ productId }) => {
       {/* Entire left sidebar should be floated to the left and kept fixed relative to rating list */}
       <div>
         <div>
-          {/* Head of Widget */}
-          <h3>
-            RATINGS & REVIEWS
-          </h3>
           <StarRating reviewMeta={reviewMeta}/>
         </div>
         <div>
