@@ -2,9 +2,6 @@ import {useState, useEffect} from "react";
 import StyleButton from './StyleButton.jsx';
 
 const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
-  console.log('STYLE SELECTOR')
-  console.log(currStyle);
-  console.log(styleArray);
   let buttIndex = -1;
 
   const renderSelectors = () => {
@@ -12,34 +9,35 @@ const StyleSelector = ({styleArray, currStyle, setCurrStyleIndex}) => {
     let trArr = [];
     let tempRow = <tr></tr>;
     for (let i = 0; i < styleArray.length; i++) {
-      let cell = <td><StyleButton
-      style = {styleArray[i]}
-      setCurrStyleIndex = {setCurrStyleIndex}
-      buttIndex = {buttIndex += 1}
-      currStyleId = {currStyle.style_id}/></td>
+      let cell = <td key = {i}><StyleButton
+        style = {styleArray[i]}
+        setCurrStyleIndex = {setCurrStyleIndex}
+        buttIndex = {buttIndex += 1}
+        currStyleId = {currStyle.style_id}/></td>;
 
       trArr.push(cell);
 
-      if (i%4 === 3 || i === styleArray.length - 1) {
-        console.log("TR ARR LENGTH: *****", trArr.length)
-        tableArr.push(<tr>{trArr}</tr>)
+      if (i % 4 === 3 || i === styleArray.length - 1) {
+        tableArr.push(<tr key = {`${i}tr`}>{trArr}</tr>);
         trArr = [];
       }
     }
     return tableArr;
-  }
+  };
 
   return (
-    <div>
+    <>
       <div>
         <b>Style &gt;</b> {currStyle.name}
       </div>
       <br></br>
       <table>
-        {renderSelectors()}
+        <tbody>
+          {renderSelectors()}
+        </tbody>
       </table>
-    </div>
-  )
-}
+    </>
+  );
+};
 
 export default StyleSelector;

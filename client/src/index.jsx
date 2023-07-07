@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 
 //Styling Imports
@@ -17,27 +17,33 @@ import QuestionsAndAnswers from './components/qa/index.jsx';
 
 const App = () => {
 
-   const [currId, setCurrId] = useState();
+  const [currId, setCurrId] = useState();
 
-   useEffect(()=>{
-     Products.getProducts()
-       .then((res)=>{
-         console.log('Get PRODUCTS')
-         console.log(res.data)
-         setCurrId(res.data[0]?.id || '')
-       })
-       .catch((err)=>{console.log('GET PRODUCTS ERROR: ', err)})
-   },[])
+  useEffect(() => {
+    Products.getProducts()
+      .then((res) => {
+        setCurrId(res.data[0]?.id || '')
+      })
+      .catch((err) => { console.log('GET PRODUCTS ERROR: ', err) })
+  }, [])
 
   const condRender = () => {
     if (currId) {
-      return (<div>
-        <Overview id = {currId} setCurrId = {setCurrId} />
-        <RelatedList productId={currId} setProductId={setCurrId} />
-        <QuestionsAndAnswers productId={currId} />
-        <Review productId={currId} />
+      return (<div className = "flex flex-col justify-content">
+        <div>
+          <Overview id={currId} setCurrId={setCurrId} />
         </div>
-        )
+        <div className = "flex flex-row justify-center">
+          <RelatedList productId={currId} setProductId={setCurrId} />
+        </div>
+        <div>
+          <QuestionsAndAnswers productId={currId} />
+        </div>
+        <div>
+          <Review productId={currId} />
+        </div>
+      </div>
+      )
     } else {
       return (<div></div>)
     }
@@ -46,7 +52,6 @@ const App = () => {
   return (
     <div>
       {condRender()}
-
     </div>
   )
 }
