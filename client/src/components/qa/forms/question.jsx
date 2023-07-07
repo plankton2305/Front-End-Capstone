@@ -9,7 +9,7 @@ const QuestionForm = ({ id, setOpen, productName, setRerender}) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    let form = document.getElementById('add-question-form');
+    let form = e.target.form;
     let isValid = form.reportValidity();
     let data = {
       body: body,
@@ -31,7 +31,7 @@ const QuestionForm = ({ id, setOpen, productName, setRerender}) => {
   };
 
   return (
-    <form id="add-question-form">
+    <form>
       <button
         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
         onClick={() => {setOpen(false)}}>✕
@@ -58,7 +58,7 @@ const QuestionForm = ({ id, setOpen, productName, setRerender}) => {
           className="p-2 w-full"
           type="email"
           maxLength="60"
-          placeholder="Why did you like the product or not?"
+          placeholder="jack543@email.com"
           required
           onChange={(e) => setEmail(e.target?.value || '')}
           />
@@ -69,6 +69,7 @@ const QuestionForm = ({ id, setOpen, productName, setRerender}) => {
         <textarea
           className="p-2 w-full"
           maxLength="1000"
+          placeholder="Why did you like the product or not?"
           required
           onChange={(e) => setBody(e.target?.value || '')}
           style={{resize: 'none'}}

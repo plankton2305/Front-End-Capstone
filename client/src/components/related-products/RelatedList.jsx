@@ -13,6 +13,7 @@ import {
   Typography,
   Avatar,
 } from "@material-tailwind/react";
+import Reviews from '../../api/reviews.js';
 
 // Rough draft for html structure
 const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
@@ -50,11 +51,31 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
 
         const stylesResponse = await Products.getStyles(id);
 
+        const starReviewsResponse = await Reviews.getMetaData(id);
+
         let defaultStyle = stylesResponse.data.results.find(style => style['default?'] === true); // only take default style
+
+        const averageRating = (data) => {
+          const calculateAverage = (ratings) => {
+            let sum = 0;
+            let numOfRatings = 0;
+            for (const val in ratings) {
+              sum += Number(val) * ratings[val];
+              numOfRatings += Number(ratings[val]);
+            }
+
+            return numOfRatings ? sum / numOfRatings : 0;
+          };
+
+          const averageRatings =
+            Math.round(calculateAverage(data.ratings) * 10) / 10;
+          return averageRatings;
+        };
 
         let relatedData = {
           product: productResponse.data,
-          styles: defaultStyle
+          styles: defaultStyle,
+          stars: averageRating(starReviewsResponse.data),
         };
 
         return relatedData;
@@ -185,58 +206,59 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
 
   return (
     <React.Fragment>
-      <div className='grid justify-self-center ml-10'>
+      <div className='ml-10'>
         <Typography variant="h4">Related Products</Typography>
-        <div className='carousel-container w-11/12 flex items-center'>
+        <div className='carousel-container w-11/12 flex items-center bg-[#c5d8d6] border border-solid border-[#455f68] rounded border-opacity-50 '>
           {showLeftArrow1 && (
-            <a className="btn btn-circle" onClick={scrollLeft1}>❮</a>
+            <a className="btn btn-circle mr-2" onClick={scrollLeft1}>❮</a>
           )}
           <div ref={carouselRef1} className="carousel w-11/12 overflow-hidden rounded-box">
             {productStyles.map((product, index) => (
               <RelatedCards key={index} product={product} currentDetails={currentDetails} setProductId={setProductId} setUpdateSaved={setUpdateSaved} />
             ))}
           </div>
+          {/* <div className="to-bg-black-10 absolute h-full w-full bg-gradient-to-l via-transparent from-black/80 via-black/50" /> */}
+          {/* <div className='float-right bg-gradient-to-r from-transparent via-transparent to-[#2b3d46]'></div>  */}
           {showRightArrow1 && (
-            <a className="btn btn-circle" onClick={scrollRight1}>❯</a>
+            <a className="btn btn-circle ml-2" onClick={scrollRight1}>❯</a>
           )}
         </div>
         <Typography variant="h4" className='mt-5'>Your Outfit</Typography>
-        <div className='carousel-container w-11/12 flex items-center'>
+        <div className='carousel-container w-11/12 flex items-center bg-[#c5d8d6] border border-solid border-[#455f68] rounded border-opacity-50'>
           {showLeftArrow2 && (
-            <a className="btn btn-circle" onClick={scrollLeft2}>❮</a>
+            <a className="btn btn-circle mr-2" onClick={scrollLeft2}>❮</a>
           )}
           <div ref={carouselRef2} className="carousel w-11/12 overflow-hidden rounded-box">
 
             <div className="carousel-item shrink-0">
-              {/* <Card className="mt-6 w-96 rounded-lg overflow-hidden shrink-0" onClick={changeAddCard}> */}
-                <Card
-                  shadow={false}
-                  className="h-[25rem] w-96 overflow-hidden mt-6" onClick={changeAddCard}
+              <Card
+                shadow={false}
+                className="h-[25rem] w-96 overflow-hidden mt-3 ml-5" onClick={changeAddCard}
+              >
+                <figure
+                  floated="false"
+                  shadow="false"
+                  color="transparent"
+                  className={`h-full w-full bg-cover bg-center transition duration-300 ease-in-out hover:-translate-y-3 hover:scale-110 rounded-lg`}
+                  style={{
+                    backgroundImage: currentDetails.styles && currentDetails.styles.photos && currentDetails.styles.photos[0].url
+                      ? `url(${currentDetails.styles.photos[0].url})`
+                      : "url('default_pic.png')",
+                  }}
                 >
-                  <figure
-                    floated="false"
-                    shadow="false"
-                    color="transparent"
-                    className={`h-full w-full bg-cover bg-center transition duration-300 ease-in-out hover:-translate-y-3 hover:scale-110 rounded-lg`}
-                    style={{
-                      backgroundImage: currentDetails.styles && currentDetails.styles.photos && currentDetails.styles.photos[0].url
-                        ? `url(${currentDetails.styles.photos[0].url})`
-                        : "url('default_pic.png')",
-                    }}
+                  <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 transition duration-300 ease-in-out hover:opacity-50 rounded-lg" />
+                </figure>
+                <CardBody className="relative py-14 px-10 md:px-50 flex flex-col items-center justify-start absolute inset-x-0 top-10 h-16 rounded-lg mt-8 pointer-events-none">
+                  <Typography
+                    variant="h3"
+                    color="white"
+                    className="font-medium leading-[1.5] font-family-none"
                   >
-                    <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-t from-black/80 via-black/50 transition duration-300 ease-in-out hover:opacity-50 rounded-lg" />
-                  </figure>
-                  <CardBody className="relative py-14 px-10 md:px-50 flex flex-col items-center justify-start absolute inset-x-0 top-10 h-16 rounded-lg mt-8 pointer-events-none">
-                    <Typography
-                      variant="h3"
-                      color="white"
-                      className="font-medium leading-[1.5] font-family-none"
-                    >
-                      {currentCardText}
-                    </Typography>
-                    <span className="material-symbols-outlined text-5xl text-white mt-5">{adding}</span>
-                  </CardBody>
-                </Card>
+                    {currentCardText}
+                  </Typography>
+                  <span className="material-symbols-outlined text-5xl text-white mt-5">{adding}</span>
+                </CardBody>
+              </Card>
             </div>
 
             {favProducts.map((favProduct, index) => (
@@ -244,7 +266,7 @@ const RelatedList = ({ productId, setProductId }) => { //, currentPhoto
             ))}
           </div>
           {showRightArrow2 && (
-            <a className="btn btn-circle" onClick={scrollRight2}>❯</a>
+            <a className="btn btn-circle ml-2" onClick={scrollRight2}>❯</a>
           )}
         </div>
       </div>

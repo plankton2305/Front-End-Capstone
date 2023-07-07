@@ -11,12 +11,11 @@ import Compare from './Compare.jsx';
 import axios from 'axios';
 import { saveToCloset, getFromCloset, removeFromCloset } from './accessYourCloset.js';
 import CardImgSlider from './CardImgSlider.jsx';
+import {renderStars} from '.././product-review/Ratings/Star-Rating.jsx';
 
 const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
-  // const unfill = "btn btn-circle";
-  // const fill = "btn btn-circle btn-error";
 
-  // console.log('FAV PRODUCT', favProduct);
+  console.log(favProduct);
 
   const removeFav = () => {
     removeFromCloset(favProduct.product.id);
@@ -29,9 +28,9 @@ const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
 
   return !(favProduct.product.id === productId) ? (
     <React.Fragment>
-      <div className="carousel-item">
-        <Card className="mt-6 w-96 overflow-hidden rounded-lg">
-          <CardHeader color="blue-gray" className="relative h-56 mt-5">
+      <div className="carousel-item ml-5 mb-3">
+        <Card className="mt-3 w-96 overflow-hidden rounded-lg">
+          <CardHeader color="blue-gray" className="relative h-60 mt-3">
             {favProduct.styles && favProduct.styles.photos && favProduct.styles.photos[0].url ? (
               <CardImgSlider product={favProduct} selectNewProduct={selectNewProduct} />
             ) : (
@@ -52,7 +51,7 @@ const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
             </div>
           </CardHeader>
           <CardBody>
-            <span className="badge opacity-80">{favProduct.product.category}</span>
+            <span className="badge bg-[#455f68] opacity-90 text-white">{favProduct.product.category}</span>
             <Typography variant="h5" color="blue-gray" className="mb-2" onClick={selectNewProduct}>
               {favProduct.product.name}
             </Typography>
@@ -66,9 +65,9 @@ const FavCards = ({ favProduct, setProductId, productId, setUpdateSaved }) => {
                 <span className='original-price'>${favProduct.product.default_price}</span>
               )}
             </Typography>
-            <Typography>
-              ☆☆☆☆☆
-            </Typography>
+            <div className='flex row'>
+              {renderStars(favProduct.stars)}
+            </div>
           </CardBody>
         </Card>
       </div>

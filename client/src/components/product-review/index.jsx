@@ -17,4 +17,4 @@ const Review = ({ productId }) => {
   );
 }
 
-export default Review;6
+export default Review;

@@ -11,7 +11,7 @@ const AnswerForm = ({ id, setOpen, productName, question, setRerender }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    let form = document.getElementById('add-answer-form');
+    let form = e.target.form;
     let isValid = form.reportValidity();
     let data = {
       body: body,
@@ -20,9 +20,8 @@ const AnswerForm = ({ id, setOpen, productName, question, setRerender }) => {
       photos: photos
     };
 
-    console.log(isValid);
-
     if (!isValid) {
+      console.log('Invalid Form', form);
       return;
     }
 
@@ -31,12 +30,12 @@ const AnswerForm = ({ id, setOpen, productName, question, setRerender }) => {
       setRerender(true);
     });
 
-    console.log(data);
+
     setOpen(null)
   };
 
   return (
-    <form id="add-answer-form">
+    <form>
       <button
         className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
         onClick={() => {setOpen(false)}}>✕
@@ -63,7 +62,7 @@ const AnswerForm = ({ id, setOpen, productName, question, setRerender }) => {
           className="p-2 w-full"
           type="email"
           maxLength="60"
-          placeholder="Why did you like the product or not?"
+          placeholder="jack@email.com"
           required
           onChange={(e) => setEmail(e.target?.value || '')}
           />
@@ -74,6 +73,7 @@ const AnswerForm = ({ id, setOpen, productName, question, setRerender }) => {
         <textarea
           className="p-2 w-full"
           maxLength="1000"
+          placeholder=""
           required
           onChange={(e) => setBody(e.target?.value || '')}
           style={{resize: 'none'}}

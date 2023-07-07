@@ -23,7 +23,7 @@ const ProductDetails = ({currProd}) => {
   };
   const renderText = () => {
     return (
-      <div className = "flex flex-col w-64 border-t-4 border-b-4 border-black-500 mx-4">
+      <div className = "flex flex-col w-96 border-t-4 border-b-4 border-black-500 mx-4">
         <div className = "my-2 italic font-extralight">
           {renderSlogan()}
         </div>

@@ -9,7 +9,6 @@ const FitBreakdown = ({ reviewMeta }) => {
 
   const renderGraph = (characteristics = {}) => {
     let elements = [];
-    console.log(`CHARACTERISTICS:::::::${JSON.stringify(characteristics, null, 2)}`)
 
     for (let key in characteristics) {
       elements.push(
