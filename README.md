@@ -1,6 +1,10 @@
 # Front-End-Capstone
 FEC
 
+
+https://github.com/plankton2305/The-Chum-Closet/assets/105373771/dcb935e3-a002-4194-9915-e1c349872ae9
+
+
 ## Setup
 Clone to local machine
 ```sh
